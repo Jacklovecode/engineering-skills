@@ -1,0 +1,6 @@
+{
+  "name": "engineering-skills",
+  "description": "Guided engineering workflow skills for clarification, planning, execution, TDD, diagnosis, review, and completion.",
+  "version": "0.1.0",
+  "contextFileName": "GEMINI.md"
+}

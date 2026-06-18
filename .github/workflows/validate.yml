@@ -1,0 +1,34 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  windows:
+    name: Windows validation
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate structure
+        shell: pwsh
+        run: ./scripts/validate.ps1
+
+      - name: Simulate pressure scenarios
+        shell: pwsh
+        run: ./scripts/simulate-pressure.ps1
+
+  unix:
+    name: Unix validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate structure
+        run: sh ./scripts/validate.sh
+
+      - name: Simulate pressure scenarios
+        run: sh ./scripts/simulate-pressure.sh

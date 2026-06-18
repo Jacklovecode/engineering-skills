@@ -1,0 +1,19 @@
+{
+  "name": "engineering-skills",
+  "description": "Guided engineering workflow skills for clarification, planning, execution, TDD, diagnosis, review, and completion.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Engineering Skills Contributors"
+  },
+  "homepage": "https://github.com/engineering-skills/engineering-skills",
+  "repository": "https://github.com/engineering-skills/engineering-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "engineering",
+    "tdd",
+    "debugging",
+    "review",
+    "workflow"
+  ]
+}
