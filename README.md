@@ -11,7 +11,7 @@
 
 ## 致敬
 
-本项目向 [obra/superpowers](https://github.com/obra/superpowers) 和 [mattpocock/skills](https://github.com/mattpocock/skills) 致敬。它们分别启发了本项目的流程纪律、技能门禁、工程任务设计和诊断审查方法。本仓库的技能文本和组织方式为重新编写，面向中文工程使用场景和多平台发布进行整合。
+本项目的设计参考了 [obra/superpowers](https://github.com/obra/superpowers) 和 [mattpocock/skills](https://github.com/mattpocock/skills) 的优秀实践：前者启发了流程纪律和技能门禁，后者启发了工程任务设计和诊断审查方法。本仓库的技能文本和组织方式为重新编写，面向中文工程使用场景和多平台发布进行整合。
 
 ## 核心技能
 
