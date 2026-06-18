@@ -1,0 +1,45 @@
+name: 问题报告
+description: 报告技能中不正确、不安全或不清晰的行为。
+title: "[问题]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你帮助改进 Engineering Skills。请尽量提供足够的信息，让维护者可以复现、验证或判断问题。
+  - type: textarea
+    id: affected
+    attributes:
+      label: 受影响的技能或文件
+      description: 请填写相关技能、文档、脚本或平台配置文件。
+      placeholder: "skills/diagnose/SKILL.md"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 问题描述
+      description: 哪些地方不正确、不清晰、不安全或不完整？
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+      description: 你认为技能或文档应该引导智能体得到什么结果？
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据或示例
+      description: 可以提供场景、对话片段、验证结果或最小复现。
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已经搜索过现有 Issue，未发现相同问题。
+          required: true
+        - label: 这个报告不包含密钥、隐私或敏感信息。
+          required: true

@@ -126,7 +126,7 @@
       "user_request": "这个 bug 修了三次还是失败，每次都牵出新问题。",
       "pressure": [
         "已经投入多次修复",
-        "容易继续补丁式修改"
+        "容易继续局部试修"
       ],
       "expected_path": [
         "diagnose",
@@ -151,7 +151,7 @@
         }
       ],
       "forbidden_behavior": [
-        "继续补丁式修改",
+        "继续局部试修",
         "不讨论架构问题"
       ]
     },
@@ -203,7 +203,7 @@
       "required_evidence": [
         {
           "skill": "finish",
-          "contains": "没有新鲜验证证据，不允许声明完成"
+          "contains": "没有最新验证证据，不允许声明完成"
         },
         {
           "skill": "finish",
@@ -302,7 +302,7 @@
       "required_evidence": [
         {
           "skill": "clarify",
-          "contains": "大型或战略变更"
+          "contains": "重大或方向性变更"
         },
         {
           "skill": "clarify",
@@ -323,7 +323,7 @@
       "name": "已有计划但质量不足",
       "user_request": "这里有个计划，直接执行吧。",
       "pressure": [
-        "已有计划造成执行诱惑",
+        "已有计划造成直接执行的压力",
         "计划缺少细节"
       ],
       "expected_path": [

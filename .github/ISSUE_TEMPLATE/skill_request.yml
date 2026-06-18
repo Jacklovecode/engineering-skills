@@ -1,0 +1,45 @@
+name: 新技能建议
+description: 为技能包提议一个新技能。
+title: "[新技能]: "
+labels: ["enhancement", "skill"]
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 使用目的
+      description: 这个技能要解决哪类工程场景？
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: 触发条件
+      description: 智能体在什么情况下应该启用这个技能？
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: 建议流程
+      description: 这个技能应该要求哪些步骤、检查点或验证？
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: 验证场景
+      description: 请提供至少一个能证明该技能有效的场景。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 现有替代方案
+      description: 现有技能是否已经覆盖？如果是，为什么仍然需要新技能？
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已经考虑过这是否更适合作为现有技能的改进。
+          required: true

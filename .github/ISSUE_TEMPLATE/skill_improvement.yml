@@ -1,0 +1,39 @@
+name: 技能改进建议
+description: 对现有技能提出具体改进。
+title: "[改进]: "
+labels: ["enhancement", "skill"]
+body:
+  - type: textarea
+    id: skill
+    attributes:
+      label: 相关技能
+      description: 希望改进哪个现有技能？
+      placeholder: "diagnose"
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 当前限制
+      description: 这个技能目前缺少什么、过度要求了什么，或哪里表达不清楚？
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: 建议改动
+      description: 你希望具体怎么改？
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 验证场景
+      description: 维护者应如何验证这个改进确实有效？
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: 风险或取舍
+      description: 这个改动是否可能让技能更难用、适用面更窄，或降低跨平台兼容性？

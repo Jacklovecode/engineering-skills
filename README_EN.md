@@ -17,6 +17,8 @@ This project is informed by the excellent practices in [obra/superpowers](https:
 
 The skill text and organization in this repository are newly written and adapted for Chinese engineering workflows and multi-platform distribution.
 
+Developed with assistance from OpenAI Codex for design, organization, and validation.
+
 ## Core Skills
 
 | Skill | Purpose |
@@ -52,6 +54,16 @@ All complete paths converge at `finish`: verify that the result is what the user
 - Installation: [INSTALL.md](INSTALL.md)
 - Usage examples: [USAGE.md](USAGE.md)
 - Validation: run `scripts/validate.ps1` on Windows or `scripts/validate.sh` on macOS/Linux.
+
+## Contributing
+
+Contributions are welcome through issues and pull requests, especially for skill design, Chinese wording, validation scenarios, and multi-platform compatibility.
+
+- Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- Security policy: [SECURITY.md](SECURITY.md)
+
+Before opening a pull request, run structure validation and pressure-scenario validation. Make sure `docs/`, local reports, caches, backup files, and sensitive information are not committed.
 
 ## Typical Paths
 

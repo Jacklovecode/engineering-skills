@@ -93,8 +93,8 @@ else
 fi
 
 scenario_checks='skills/start/SKILL.md|需求不清|start routes unclear requirements
-skills/start/SKILL.md|不能覆盖这些质量门禁|start protects quality gates from skip requests
-skills/clarify/SKILL.md|大型或战略变更|clarify handles large changes
+skills/start/SKILL.md|不能覆盖这些质量检查点|start protects quality gates from skip requests
+skills/clarify/SKILL.md|重大或方向性变更|clarify handles large changes
 skills/clarify/SKILL.md|必须让用户审阅后再进入 `plan`|clarify requires review before large plans
 skills/clarify/SKILL.md|需求已清楚且只是小修改：进入 `tdd`|clarify routes small changes to tdd
 skills/clarify/SKILL.md|进入 `grill`|clarify routes uncertain design to grill

@@ -13,7 +13,9 @@
 
 ## 致敬
 
-本项目的设计参考了 [obra/superpowers](https://github.com/obra/superpowers) 和 [mattpocock/skills](https://github.com/mattpocock/skills) 的优秀实践：前者启发了流程纪律和技能门禁，后者启发了工程任务设计和诊断审查方法。本仓库的技能文本和组织方式为重新编写，面向中文工程使用场景和多平台发布进行整合。
+本项目的设计参考了 [obra/superpowers](https://github.com/obra/superpowers) 和 [mattpocock/skills](https://github.com/mattpocock/skills) 的优秀实践：前者启发了流程纪律和技能检查点，后者启发了工程任务设计和诊断审查方法。本仓库的技能文本和组织方式为重新编写，面向中文工程使用场景和多平台发布进行整合。
+
+本项目在开发过程中使用 OpenAI Codex 辅助完成设计、整理和验证。
 
 ## 核心技能
 
@@ -28,7 +30,7 @@
 | `execute` | 按确认计划逐项执行：TDD、验证、审查，失败则诊断。 |
 | `tdd` | 行为优先 TDD：失败测试、最小实现、重构。 |
 | `diagnose` | 问题诊断：反馈循环、复现、假设、验证、根因、回归。 |
-| `review` | 双轴审查：需求符合度和工程质量。 |
+| `review` | 双维度审查：需求符合度和工程质量。 |
 | `finish` | 完成前验证、风险说明、PR/合并/清理决策。 |
 | `git` | 版本控制操作：提交、推送、合并、PR、远程仓库和清理风险控制。 |
 | `skill-edit` | 创建或修改技能：先压力场景，再写技能，再验证。 |
@@ -50,6 +52,16 @@
 - 安装方式见 [INSTALL.md](INSTALL.md)。
 - 日常用法和示例见 [USAGE.md](USAGE.md)。
 - 发布前可运行 `scripts/validate.ps1` 或 `scripts/validate.sh` 做结构校验。
+
+## 参与贡献
+
+欢迎通过 Issue 和 Pull Request 参与改进本技能包，尤其是技能设计、中文表达、验证场景和多平台适配。
+
+- 贡献方式和 PR 要求见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+- 社区沟通规则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
+- 安全问题反馈见 [SECURITY.md](SECURITY.md)。
+
+提交 PR 前请运行结构校验和压力场景验证，并确认没有把 `docs/`、本地报告、缓存、备份文件或敏感信息提交到仓库。
 
 ## 典型路径
 
@@ -85,7 +97,7 @@ start -> zoom-out -> deepen -> clarify -> grill -> plan -> execute -> finish
 ## 语言策略
 
 - 技能名使用英文短名，便于跨平台调用。
-- 技能主体使用中文，尤其约束、门禁和执行要求。
+- 技能主体使用中文，尤其约束、检查点和执行要求。
 - frontmatter 元数据和清单文件使用英文，便于技能索引和平台识别。
 
 ## English Summary

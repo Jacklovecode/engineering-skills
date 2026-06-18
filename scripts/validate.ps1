@@ -103,8 +103,8 @@ foreach ($file in $jsonFiles) {
 
 $scenarioChecks = @(
   @{ File = 'skills/start/SKILL.md'; Pattern = '需求不清'; Label = 'start routes unclear requirements' },
-  @{ File = 'skills/start/SKILL.md'; Pattern = '不能覆盖这些质量门禁'; Label = 'start protects quality gates from skip requests' },
-  @{ File = 'skills/clarify/SKILL.md'; Pattern = '大型或战略变更'; Label = 'clarify handles large changes' },
+  @{ File = 'skills/start/SKILL.md'; Pattern = '不能覆盖这些质量检查点'; Label = 'start protects quality gates from skip requests' },
+  @{ File = 'skills/clarify/SKILL.md'; Pattern = '重大或方向性变更'; Label = 'clarify handles large changes' },
   @{ File = 'skills/clarify/SKILL.md'; Pattern = '必须让用户审阅后再进入 `plan`'; Label = 'clarify requires review before large plans' },
   @{ File = 'skills/clarify/SKILL.md'; Pattern = '需求已清楚且只是小修改：进入 `tdd`'; Label = 'clarify routes small changes to tdd' },
   @{ File = 'skills/clarify/SKILL.md'; Pattern = '进入 `grill`'; Label = 'clarify routes uncertain design to grill' },
