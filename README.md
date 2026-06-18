@@ -4,10 +4,14 @@
 
 本项目融合两类能力：
 
-- Superpowers 风格的流程纪律：先澄清，再计划；先失败测试，再实现；先审查验证，再完成。
-- Matt Pocock skills 风格的工程深度：领域语言、任务分层、行为测试、反馈循环、根因诊断。
+- [obra/superpowers](https://github.com/obra/superpowers) 风格的流程纪律：先澄清，再计划；先失败测试，再实现；先审查验证，再完成。
+- [mattpocock/skills](https://github.com/mattpocock/skills) 风格的工程深度：领域语言、任务分层、行为测试、反馈循环、根因诊断。
 
 目标不是让智能体接管所有判断，而是让它在关键节点少犯错。
+
+## 致敬
+
+本项目向 [obra/superpowers](https://github.com/obra/superpowers) 和 [mattpocock/skills](https://github.com/mattpocock/skills) 致敬。它们分别启发了本项目的流程纪律、技能门禁、工程任务设计和诊断审查方法。本仓库的技能文本和组织方式为重新编写，面向中文工程使用场景和多平台发布进行整合。
 
 ## 核心技能
 
