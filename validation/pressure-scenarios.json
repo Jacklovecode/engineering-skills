@@ -504,6 +504,14 @@
         {
           "skill": "git",
           "contains": "不要直接强推"
+        },
+        {
+          "skill": "git",
+          "contains": "获得用户最终确认"
+        },
+        {
+          "skill": "git",
+          "contains": "应上传、不应上传、需要用户确认"
         }
       ],
       "forbidden_behavior": [

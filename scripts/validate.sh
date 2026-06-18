@@ -122,6 +122,8 @@ skills/finish/SKILL.md|会删除的分支、提交、文件或 worktree|finish l
 skills/git/SKILL.md|git rm --cached|git preserves local files while untracking
 skills/git/SKILL.md|不要直接强推|git rejects unsafe force push
 skills/git/SKILL.md|用户明确说某个目录不要上传|git honors excluded upload paths
+skills/git/SKILL.md|获得用户最终确认|git requires final user confirmation before upload
+skills/git/SKILL.md|应上传、不应上传、需要用户确认|git requires upload classification
 skills/deepen/SKILL.md|暂不建议重构|deepen can decline unnecessary refactors
 skills/skill-edit/SKILL.md|压力场景|skill-edit requires pressure scenarios
 skills/skill-edit/SKILL.md|description` 只写触发条件|skill-edit enforces description trigger rule'

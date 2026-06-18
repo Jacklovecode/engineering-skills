@@ -132,6 +132,8 @@ $scenarioChecks = @(
   @{ File = 'skills/git/SKILL.md'; Pattern = 'git rm --cached'; Label = 'git preserves local files while untracking' },
   @{ File = 'skills/git/SKILL.md'; Pattern = '不要直接强推'; Label = 'git rejects unsafe force push' },
   @{ File = 'skills/git/SKILL.md'; Pattern = '用户明确说某个目录不要上传'; Label = 'git honors excluded upload paths' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = '获得用户最终确认'; Label = 'git requires final user confirmation before upload' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = '应上传、不应上传、需要用户确认'; Label = 'git requires upload classification' },
   @{ File = 'skills/deepen/SKILL.md'; Pattern = '暂不建议重构'; Label = 'deepen can decline unnecessary refactors' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = '压力场景'; Label = 'skill-edit requires pressure scenarios' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = 'description` 只写触发条件'; Label = 'skill-edit enforces description trigger rule' }
