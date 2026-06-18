@@ -17,7 +17,7 @@ AGENTS.md
 CLAUDE.md
 GEMINI.md
 LICENSE
-NOTICE.md
+README_EN.md
 .codex-plugin/plugin.json
 .claude-plugin/plugin.json
 gemini-extension.json
