@@ -27,12 +27,12 @@ echo
 echo "## 未跟踪但未忽略文件"
 git ls-files --others --exclude-standard || true
 echo
-echo "## docs 跟踪检查"
-if git ls-files | grep '^docs/' >/dev/null; then
-  echo "发现已跟踪 docs 文件："
-  git ls-files | grep '^docs/'
+echo "## 本地报告跟踪检查"
+if git ls-files | grep '^\.local/' >/dev/null; then
+  echo "发现已跟踪本地报告文件："
+  git ls-files | grep '^\.local/'
 else
-  echo "未发现已跟踪 docs 文件"
+  echo "未发现已跟踪本地报告文件"
 fi
 echo
 echo "## 提醒"

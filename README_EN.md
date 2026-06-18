@@ -53,7 +53,32 @@ All complete paths converge at `finish`: verify that the result is what the user
 
 - Installation: [INSTALL.md](INSTALL.md)
 - Usage examples: [USAGE.md](USAGE.md)
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Validation: run `scripts/validate.ps1` on Windows or `scripts/validate.sh` on macOS/Linux.
+
+## Quick Start
+
+Windows:
+
+```powershell
+git clone https://github.com/Jacklovecode/engineering-skills.git
+cd engineering-skills
+.\scripts\install.ps1
+.\scripts\validate.ps1
+```
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/Jacklovecode/engineering-skills.git
+cd engineering-skills
+chmod +x scripts/install.sh scripts/validate.sh scripts/simulate-pressure.sh
+./scripts/install.sh
+./scripts/validate.sh
+```
+
+The install scripts copy the skill pack and platform entry files. They do not run git operations.
 
 ## Contributing
 
@@ -63,44 +88,7 @@ Contributions are welcome through issues and pull requests, especially for skill
 - Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - Security policy: [SECURITY.md](SECURITY.md)
 
-Before opening a pull request, run structure validation and pressure-scenario validation. Make sure `docs/`, local reports, caches, backup files, and sensitive information are not committed.
-
-## Typical Paths
-
-Small change:
-
-```text
-start
-  -> clarify if requirements are unclear
-  -> tdd
-  -> diagnose if verification fails or behavior is unexplained
-  -> review
-  -> finish
-```
-
-Bug diagnosis:
-
-```text
-start -> diagnose -> tdd -> review -> finish
-```
-
-New feature:
-
-```text
-start -> clarify -> grill -> plan -> execute -> finish
-```
-
-Complex architecture work:
-
-```text
-start -> zoom-out -> deepen -> clarify -> grill -> plan -> execute -> finish
-```
-
-Git operation:
-
-```text
-start -> git
-```
+Before opening a pull request, run structure validation and pressure-scenario validation. Make sure local reports, caches, backup files, and sensitive information are not committed.
 
 ## Language Strategy
 

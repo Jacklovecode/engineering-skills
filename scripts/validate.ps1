@@ -37,8 +37,24 @@ $requiredFiles = @(
   "hooks/session-start-codex.sh",
   "scripts/simulate-pressure.ps1",
   "scripts/simulate-pressure.sh",
+  "scripts/install.ps1",
+  "scripts/install.sh",
   "scripts/validate.ps1",
   "scripts/validate.sh",
+  "skills/diagnose/scripts/hitl-loop.ps1",
+  "skills/diagnose/scripts/hitl-loop.sh",
+  "skills/deepen/scripts/collect-architecture-context.ps1",
+  "skills/deepen/scripts/collect-architecture-context.sh",
+  "skills/finish/scripts/collect-evidence.ps1",
+  "skills/finish/scripts/collect-evidence.sh",
+  "skills/git/scripts/preflight.ps1",
+  "skills/git/scripts/preflight.sh",
+  "skills/git/scripts/guard.ps1",
+  "skills/git/scripts/guard.sh",
+  "skills/review/scripts/collect-context.ps1",
+  "skills/review/scripts/collect-context.sh",
+  "skills/skill-edit/scripts/check.ps1",
+  "skills/skill-edit/scripts/check.sh",
   "validation/pressure-scenarios.json"
 )
 
@@ -126,6 +142,8 @@ $scenarioChecks = @(
   @{ File = 'skills/diagnose/SKILL.md'; Pattern = '进入 `review`，再进入 `finish`'; Label = 'diagnose returns to review and finish' },
   @{ File = 'skills/diagnose/SKILL.md'; Pattern = '进入 `deepen`'; Label = 'diagnose escalates architecture issues' },
   @{ File = 'skills/diagnose/SKILL.md'; Pattern = '必须评估是否进入 `deepen`'; Label = 'diagnose requires deepen evaluation after repeated failed fixes' },
+  @{ File = 'skills/diagnose/SKILL.md'; Pattern = 'skills/diagnose/scripts/hitl-loop.ps1'; Label = 'diagnose exposes HITL helper script' },
+  @{ File = 'skills/diagnose/SKILL.md'; Pattern = '反馈循环完成标准'; Label = 'diagnose defines feedback loop completion criteria' },
   @{ File = 'skills/finish/SKILL.md'; Pattern = '进入 `diagnose`'; Label = 'finish routes failed verification to diagnose' },
   @{ File = 'skills/finish/SKILL.md'; Pattern = '等待用户明确确认'; Label = 'finish requires confirmation before cleanup' },
   @{ File = 'skills/finish/SKILL.md'; Pattern = '会删除的分支、提交、文件或 worktree'; Label = 'finish lists destructive cleanup targets' },
@@ -134,7 +152,9 @@ $scenarioChecks = @(
   @{ File = 'skills/git/SKILL.md'; Pattern = '用户明确说某个目录不要上传'; Label = 'git honors excluded upload paths' },
   @{ File = 'skills/git/SKILL.md'; Pattern = '获得用户最终确认'; Label = 'git requires final user confirmation before upload' },
   @{ File = 'skills/git/SKILL.md'; Pattern = '应上传、不应上传、需要用户确认'; Label = 'git requires upload classification' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = 'skills/git/scripts/guard.ps1'; Label = 'git exposes dangerous command guard script' },
   @{ File = 'skills/deepen/SKILL.md'; Pattern = '暂不建议重构'; Label = 'deepen can decline unnecessary refactors' },
+  @{ File = 'skills/deepen/SKILL.md'; Pattern = 'skills/deepen/scripts/collect-architecture-context.ps1'; Label = 'deepen exposes architecture context helper script' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = '压力场景'; Label = 'skill-edit requires pressure scenarios' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = 'description` 只写触发条件'; Label = 'skill-edit enforces description trigger rule' }
 )

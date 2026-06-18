@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
 $scenarioPath = Join-Path $root "validation/pressure-scenarios.json"
-$reportPath = Join-Path $root "docs/pressure-simulation-report.md"
+$reportPath = Join-Path $root ".local/pressure-simulation-report.md"
 $errors = New-Object System.Collections.Generic.List[string]
 
 if (-not (Test-Path -LiteralPath $scenarioPath)) {
@@ -78,4 +78,4 @@ if ($errors.Count -gt 0) {
 }
 
 Write-Output $summary
-Write-Output "Report written to docs/pressure-simulation-report.md"
+Write-Output "Report written to .local/pressure-simulation-report.md"

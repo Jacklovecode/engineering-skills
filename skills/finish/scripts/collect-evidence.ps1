@@ -20,13 +20,13 @@ Write-Output ""
 Write-Output "## 暂存差异统计"
 git diff --cached --stat
 Write-Output ""
-Write-Output "## docs 跟踪检查"
-$trackedDocs = git ls-files | Select-String -Pattern '^docs/'
-if ($trackedDocs) {
-  Write-Output "发现已跟踪 docs 文件："
-  Write-Output $trackedDocs
+Write-Output "## 本地报告跟踪检查"
+$trackedLocalReports = git ls-files | Select-String -Pattern '^\.local/'
+if ($trackedLocalReports) {
+  Write-Output "发现已跟踪本地报告文件："
+  Write-Output $trackedLocalReports
 } else {
-  Write-Output "未发现已跟踪 docs 文件"
+  Write-Output "未发现已跟踪本地报告文件"
 }
 Write-Output ""
 Write-Output "## 推荐验证命令"

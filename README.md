@@ -51,7 +51,32 @@
 
 - 安装方式见 [INSTALL.md](INSTALL.md)。
 - 日常用法和示例见 [USAGE.md](USAGE.md)。
+- 版本变更见 [CHANGELOG.md](CHANGELOG.md)。
+- 贡献方式见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 - 发布前可运行 `scripts/validate.ps1` 或 `scripts/validate.sh` 做结构校验。
+
+## 快速开始
+
+Windows:
+
+```powershell
+git clone https://github.com/Jacklovecode/engineering-skills.git
+cd engineering-skills
+.\scripts\install.ps1
+.\scripts\validate.ps1
+```
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/Jacklovecode/engineering-skills.git
+cd engineering-skills
+chmod +x scripts/install.sh scripts/validate.sh scripts/simulate-pressure.sh
+./scripts/install.sh
+./scripts/validate.sh
+```
+
+安装脚本只复制技能包和平台入口，不执行 git 操作。
 
 ## 参与贡献
 
@@ -61,38 +86,7 @@
 - 社区沟通规则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
 - 安全问题反馈见 [SECURITY.md](SECURITY.md)。
 
-提交 PR 前请运行结构校验和压力场景验证，并确认没有把 `docs/`、本地报告、缓存、备份文件或敏感信息提交到仓库。
-
-## 典型路径
-
-小修改路径：
-
-```text
-start
-  -> 需求不清时进入 clarify
-  -> tdd
-  -> 失败、异常或无法解释时进入 diagnose
-  -> review
-  -> finish
-```
-
-问题诊断路径：
-
-```text
-start -> diagnose -> tdd -> review -> finish
-```
-
-新功能路径：
-
-```text
-start -> clarify -> grill -> plan -> execute -> finish
-```
-
-复杂架构路径：
-
-```text
-start -> zoom-out -> deepen -> clarify -> grill -> plan -> execute -> finish
-```
+提交 PR 前请运行结构校验和压力场景验证，并确认没有把本地报告、缓存、备份文件或敏感信息提交到仓库。
 
 ## 语言策略
 

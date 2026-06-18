@@ -2,12 +2,43 @@
 
 `engineering-skills` 是一个多平台智能体技能包。核心文件在 `skills/`，平台入口在根目录和 `hooks/`。
 
-## 通用安装
+## 推荐安装
 
 1. 克隆或下载本仓库。
-2. 将 `skills/` 放到你的智能体运行时能发现的位置，或让运行时读取本仓库根目录。
+2. 使用安装脚本复制技能包和平台入口。
+3. 运行验证脚本，确认文件结构正常。
+
+Windows:
+
+```powershell
+.\scripts\install.ps1
+```
+
+macOS / Linux:
+
+```bash
+chmod +x scripts/install.sh
+./scripts/install.sh
+```
+
+默认目标目录：
+
+```text
+Windows: $HOME\.engineering-skills
+macOS / Linux: $HOME/.engineering-skills
+```
+
+安装脚本不会执行 git 操作。
+
+## 手动安装
+
+如果不使用安装脚本：
+
+1. 将 `skills/` 放到智能体运行时能发现的位置，或让运行时读取本仓库根目录。
+2. 根据平台选择入口文件：`AGENTS.md`、`CLAUDE.md`、`GEMINI.md` 或 `.codex-plugin/plugin.json`。
 3. 让平台入口先加载 `skills/start/SKILL.md`。
-4. 运行验证脚本，确认文件结构正常。
+
+## 安装后验证
 
 Windows:
 
@@ -83,3 +114,11 @@ AGENTS.md
 - `description` 为中文触发条件。
 - JSON 清单文件可解析。
 - 没有旧术语或旧命名残留。
+
+## 脚本权限
+
+macOS / Linux 首次使用前，建议执行：
+
+```bash
+chmod +x scripts/*.sh hooks/*.sh skills/*/scripts/*.sh
+```

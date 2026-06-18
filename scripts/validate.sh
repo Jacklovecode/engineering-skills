@@ -30,8 +30,24 @@ hooks/session-start-codex.ps1
 hooks/session-start-codex.sh
 scripts/simulate-pressure.ps1
 scripts/simulate-pressure.sh
+scripts/install.ps1
+scripts/install.sh
 scripts/validate.ps1
 scripts/validate.sh
+skills/diagnose/scripts/hitl-loop.ps1
+skills/diagnose/scripts/hitl-loop.sh
+skills/deepen/scripts/collect-architecture-context.ps1
+skills/deepen/scripts/collect-architecture-context.sh
+skills/finish/scripts/collect-evidence.ps1
+skills/finish/scripts/collect-evidence.sh
+skills/git/scripts/preflight.ps1
+skills/git/scripts/preflight.sh
+skills/git/scripts/guard.ps1
+skills/git/scripts/guard.sh
+skills/review/scripts/collect-context.ps1
+skills/review/scripts/collect-context.sh
+skills/skill-edit/scripts/check.ps1
+skills/skill-edit/scripts/check.sh
 validation/pressure-scenarios.json
 '
 
@@ -116,6 +132,8 @@ skills/review/SKILL.md|依据不足|review marks missing requirement source
 skills/diagnose/SKILL.md|进入 `review`，再进入 `finish`|diagnose returns to review and finish
 skills/diagnose/SKILL.md|进入 `deepen`|diagnose escalates architecture issues
 skills/diagnose/SKILL.md|必须评估是否进入 `deepen`|diagnose requires deepen evaluation after repeated failed fixes
+skills/diagnose/SKILL.md|skills/diagnose/scripts/hitl-loop.ps1|diagnose exposes HITL helper script
+skills/diagnose/SKILL.md|反馈循环完成标准|diagnose defines feedback loop completion criteria
 skills/finish/SKILL.md|进入 `diagnose`|finish routes failed verification to diagnose
 skills/finish/SKILL.md|等待用户明确确认|finish requires confirmation before cleanup
 skills/finish/SKILL.md|会删除的分支、提交、文件或 worktree|finish lists destructive cleanup targets
@@ -124,7 +142,9 @@ skills/git/SKILL.md|不要直接强推|git rejects unsafe force push
 skills/git/SKILL.md|用户明确说某个目录不要上传|git honors excluded upload paths
 skills/git/SKILL.md|获得用户最终确认|git requires final user confirmation before upload
 skills/git/SKILL.md|应上传、不应上传、需要用户确认|git requires upload classification
+skills/git/SKILL.md|skills/git/scripts/guard.ps1|git exposes dangerous command guard script
 skills/deepen/SKILL.md|暂不建议重构|deepen can decline unnecessary refactors
+skills/deepen/SKILL.md|skills/deepen/scripts/collect-architecture-context.ps1|deepen exposes architecture context helper script
 skills/skill-edit/SKILL.md|压力场景|skill-edit requires pressure scenarios
 skills/skill-edit/SKILL.md|description` 只写触发条件|skill-edit enforces description trigger rule'
 

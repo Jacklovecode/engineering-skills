@@ -19,6 +19,7 @@ desktop.ini
 node_modules/
 
 # Local validation reports and working notes
+.local/
 docs/
 
 # Local environment files

@@ -7,7 +7,7 @@ $branch = git branch --show-current
 $remote = git remote -v
 $tracking = git branch -vv
 $status = git status --short --ignored
-$trackedDocs = git ls-files | Select-String -Pattern '^docs/'
+$trackedLocalReports = git ls-files | Select-String -Pattern '^\.local/'
 $untracked = git ls-files --others --exclude-standard
 $modified = git diff --name-only
 $staged = git diff --cached --name-only
@@ -35,12 +35,12 @@ Write-Output ""
 Write-Output "## 未跟踪但未忽略文件"
 if ($untracked) { Write-Output $untracked } else { Write-Output "无" }
 Write-Output ""
-Write-Output "## docs 跟踪检查"
-if ($trackedDocs) {
-  Write-Output "发现已跟踪 docs 文件："
-  Write-Output $trackedDocs
+Write-Output "## 本地报告跟踪检查"
+if ($trackedLocalReports) {
+  Write-Output "发现已跟踪本地报告文件："
+  Write-Output $trackedLocalReports
 } else {
-  Write-Output "未发现已跟踪 docs 文件"
+  Write-Output "未发现已跟踪本地报告文件"
 }
 Write-Output ""
 Write-Output "## 提醒"

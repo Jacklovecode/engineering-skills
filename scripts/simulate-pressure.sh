@@ -3,14 +3,14 @@ set -eu
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 SCENARIO_FILE="$ROOT/validation/pressure-scenarios.json"
-REPORT_FILE="$ROOT/docs/pressure-simulation-report.md"
+REPORT_FILE="$ROOT/.local/pressure-simulation-report.md"
 
 if [ ! -f "$SCENARIO_FILE" ]; then
   printf '%s\n' "Missing pressure scenario file: validation/pressure-scenarios.json" >&2
   exit 1
 fi
 
-mkdir -p "$ROOT/docs"
+mkdir -p "$ROOT/.local"
 
 python_cmd=""
 if command -v python3 >/dev/null 2>&1; then
@@ -78,5 +78,5 @@ if errors:
     sys.exit(1)
 
 print(summary)
-print("Report written to docs/pressure-simulation-report.md")
+print("Report written to .local/pressure-simulation-report.md")
 PY

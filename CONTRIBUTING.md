@@ -53,13 +53,12 @@ macOS 或 Linux 可运行：
 
 - 结构校验通过。
 - 压力场景验证通过。
-- 提交内容不包含 `docs/` 目录中的文件。
+- 提交内容不包含本地报告、过程笔记或临时文件。
 
 ## 提交内容规范
 
 不要提交：
 
-- `docs/`
 - 本地报告或过程笔记。
 - 备份文件。
 - 密钥、令牌、凭据或个人本地路径。
@@ -69,17 +68,13 @@ macOS 或 Linux 可运行：
 
 ```bash
 git status --short --ignored
-git ls-files | grep '^docs/' || true
 ```
 
 Windows PowerShell：
 
 ```powershell
 git status --short --ignored
-git ls-files | Select-String -Pattern '^docs/'
 ```
-
-第二条命令不应输出任何已跟踪的 `docs/` 文件。
 
 ## Pull Request 要求
 

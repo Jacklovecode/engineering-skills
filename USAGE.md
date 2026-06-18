@@ -94,3 +94,24 @@ start -> git
 - 验证失败或结果无法解释时，进入 `diagnose`。
 - 准备声明完成前，必须进入 `finish`。
 - 准备提交、推送、合并、创建 PR 或清理分支前，必须进入 `git`。
+
+## 辅助脚本
+
+这些脚本用于收集状态或做结构检查，不替代技能判断：
+
+```text
+scripts/validate.ps1
+scripts/validate.sh
+scripts/simulate-pressure.ps1
+scripts/simulate-pressure.sh
+skills/git/scripts/preflight.ps1
+skills/git/scripts/preflight.sh
+skills/skill-edit/scripts/check.ps1
+skills/skill-edit/scripts/check.sh
+skills/review/scripts/collect-context.ps1
+skills/review/scripts/collect-context.sh
+skills/finish/scripts/collect-evidence.ps1
+skills/finish/scripts/collect-evidence.sh
+```
+
+脚本不会自动提交或推送。涉及上传到 GitHub 时，仍然必须使用 `git` 技能列出上传清单并等待用户确认。
