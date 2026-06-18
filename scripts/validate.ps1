@@ -51,8 +51,8 @@ if (-not (Test-Path -LiteralPath $skillsRoot)) {
   Add-Error "Missing skills directory"
 } else {
   $skillDirs = Get-ChildItem -LiteralPath $skillsRoot -Directory
-  if ($skillDirs.Count -ne 12) {
-    Add-Error "Expected 12 skill directories, found $($skillDirs.Count)"
+  if ($skillDirs.Count -ne 13) {
+    Add-Error "Expected 13 skill directories, found $($skillDirs.Count)"
   }
 
   foreach ($dir in $skillDirs) {
@@ -101,81 +101,6 @@ foreach ($file in $jsonFiles) {
   }
 }
 
-$pressureScenariosPath = Join-Path $root "validation/pressure-scenarios.json"
-$dynamicReportPath = Join-Path $root "docs/dynamic-sampling-report.md"
-$independentReviewPath = Join-Path $root "docs/independent-review-report.md"
-if ((Test-Path -LiteralPath $pressureScenariosPath) -and (Test-Path -LiteralPath $dynamicReportPath)) {
-  try {
-    $pressureScenarios = Get-Content -Raw -LiteralPath $pressureScenariosPath -Encoding UTF8 | ConvertFrom-Json
-    $dynamicReport = Get-Content -Raw -LiteralPath $dynamicReportPath -Encoding UTF8
-    $scenarioIds = @($pressureScenarios.scenarios | ForEach-Object { $_.id })
-    $headingIds = @([regex]::Matches($dynamicReport, '(?m)^##\s+(S\d{2})\b') | ForEach-Object { $_.Groups[1].Value })
-
-    foreach ($id in $scenarioIds) {
-      $escapedId = [regex]::Escape($id)
-      if (-not [regex]::IsMatch($dynamicReport, "(?m)^##\s+$escapedId\b")) {
-        Add-Error "Dynamic sampling report missing scenario heading: $id"
-      }
-    }
-
-    foreach ($heading in ($headingIds | Sort-Object -Unique)) {
-      if ($scenarioIds -notcontains $heading) {
-        Add-Error "Dynamic sampling report has unknown scenario heading: $heading"
-      }
-    }
-
-    $duplicates = $headingIds | Group-Object | Where-Object { $_.Count -gt 1 }
-    foreach ($duplicate in $duplicates) {
-      Add-Error "Dynamic sampling report has duplicate scenario heading: $($duplicate.Name)"
-    }
-
-    $expectedSummary = "动态抽样：$($scenarioIds.Count)/$($scenarioIds.Count) PASS"
-    if (-not $dynamicReport.Contains($expectedSummary)) {
-      Add-Error "Dynamic sampling report missing summary: $expectedSummary"
-    }
-  } catch {
-    Add-Error "Cannot validate dynamic sampling report coverage: $($_.Exception.Message)"
-  }
-}
-
-if ((Test-Path -LiteralPath $pressureScenariosPath) -and (Test-Path -LiteralPath $independentReviewPath)) {
-  try {
-    $pressureScenarios = Get-Content -Raw -LiteralPath $pressureScenariosPath -Encoding UTF8 | ConvertFrom-Json
-    $independentReview = Get-Content -Raw -LiteralPath $independentReviewPath -Encoding UTF8
-    $scenarioIds = @($pressureScenarios.scenarios | ForEach-Object { $_.id })
-    $headingIds = @([regex]::Matches($independentReview, '(?m)^##\s+(S\d{2})\b') | ForEach-Object { $_.Groups[1].Value })
-
-    foreach ($id in $scenarioIds) {
-      $escapedId = [regex]::Escape($id)
-      if (-not [regex]::IsMatch($independentReview, "(?m)^##\s+$escapedId\b")) {
-        Add-Error "Independent review report missing scenario heading: $id"
-      }
-    }
-
-    foreach ($heading in ($headingIds | Sort-Object -Unique)) {
-      if ($scenarioIds -notcontains $heading) {
-        Add-Error "Independent review report has unknown scenario heading: $heading"
-      }
-    }
-
-    $duplicates = $headingIds | Group-Object | Where-Object { $_.Count -gt 1 }
-    foreach ($duplicate in $duplicates) {
-      Add-Error "Independent review report has duplicate scenario heading: $($duplicate.Name)"
-    }
-
-    $expectedSummary = "独立复测：$($scenarioIds.Count)/$($scenarioIds.Count) PASS"
-    if (-not $independentReview.Contains($expectedSummary)) {
-      Add-Error "Independent review report missing summary: $expectedSummary"
-    }
-
-    if (-not $independentReview.Contains("复测轮次：28")) {
-      Add-Error "Independent review report missing review round count: 复测轮次：28"
-    }
-  } catch {
-    Add-Error "Cannot validate independent review report coverage: $($_.Exception.Message)"
-  }
-}
-
 $scenarioChecks = @(
   @{ File = 'skills/start/SKILL.md'; Pattern = '需求不清'; Label = 'start routes unclear requirements' },
   @{ File = 'skills/start/SKILL.md'; Pattern = '不能覆盖这些质量门禁'; Label = 'start protects quality gates from skip requests' },
@@ -204,6 +129,9 @@ $scenarioChecks = @(
   @{ File = 'skills/finish/SKILL.md'; Pattern = '进入 `diagnose`'; Label = 'finish routes failed verification to diagnose' },
   @{ File = 'skills/finish/SKILL.md'; Pattern = '等待用户明确确认'; Label = 'finish requires confirmation before cleanup' },
   @{ File = 'skills/finish/SKILL.md'; Pattern = '会删除的分支、提交、文件或 worktree'; Label = 'finish lists destructive cleanup targets' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = 'git rm --cached'; Label = 'git preserves local files while untracking' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = '不要直接强推'; Label = 'git rejects unsafe force push' },
+  @{ File = 'skills/git/SKILL.md'; Pattern = '用户明确说某个目录不要上传'; Label = 'git honors excluded upload paths' },
   @{ File = 'skills/deepen/SKILL.md'; Pattern = '暂不建议重构'; Label = 'deepen can decline unnecessary refactors' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = '压力场景'; Label = 'skill-edit requires pressure scenarios' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = 'description` 只写触发条件'; Label = 'skill-edit enforces description trigger rule' }

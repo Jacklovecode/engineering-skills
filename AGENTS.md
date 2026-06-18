@@ -14,6 +14,7 @@ When a task clearly matches another skill, read that skill before acting:
 - `diagnose`: failing tests, broken builds, unexplained behavior, performance regressions.
 - `review`: check requirement fit and engineering quality.
 - `finish`: final acceptance before claiming completion.
+- `git`: version-control operations, commits, pushes, merges, PRs, remotes, cleanup.
 - `skill-edit`: create or modify skills.
 
 The skill bodies are written in Chinese. Follow their constraints and gates exactly.

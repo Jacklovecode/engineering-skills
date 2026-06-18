@@ -1,7 +1,7 @@
 {
   "name": "engineering-skills",
   "version": "0.1.0",
-  "description": "Guided engineering workflow skills for clarification, planning, execution, TDD, diagnosis, review, and completion.",
+  "description": "Guided engineering workflow skills for clarification, planning, execution, TDD, diagnosis, review, git, and completion.",
   "author": {
     "name": "Engineering Skills Contributors"
   },
@@ -14,14 +14,15 @@
     "tdd",
     "debugging",
     "review",
+    "git",
     "workflow"
   ],
   "skills": "./skills/",
   "hooks": "./hooks/hooks-codex.json",
   "interface": {
     "displayName": "Engineering Skills",
-    "shortDescription": "Clarify, plan, execute, test, diagnose, review, and finish real engineering work",
-    "longDescription": "Engineering Skills provides a guided, cross-platform workflow for coding agents: clarify requirements, plan task layers, execute them with behavior-first TDD, diagnose failures by root cause, review work, and verify before completion.",
+    "shortDescription": "Clarify, plan, execute, test, diagnose, review, use git safely, and finish real engineering work",
+    "longDescription": "Engineering Skills provides a guided, cross-platform workflow for coding agents: clarify requirements, plan task layers, execute them with behavior-first TDD, diagnose failures by root cause, review work, handle git operations safely, and verify before completion.",
     "developerName": "Engineering Skills Contributors",
     "category": "Coding",
     "capabilities": [

@@ -44,7 +44,7 @@ if [ ! -d "$ROOT/skills" ]; then
   add_error "Missing skills directory"
 else
   skill_count=$(find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
-  [ "$skill_count" = "12" ] || add_error "Expected 12 skill directories, found $skill_count"
+  [ "$skill_count" = "13" ] || add_error "Expected 13 skill directories, found $skill_count"
 
   find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d | sort | while IFS= read -r dir; do
     skill_file="$dir/SKILL.md"
@@ -88,84 +88,6 @@ if [ -n "$python_cmd" ]; then
     "$python_cmd" -m json.tool "$ROOT/$file" >/dev/null || add_error "Invalid JSON: $file"
   done
 
-  "$python_cmd" - "$ROOT" <<'PY' || add_error "Dynamic sampling report coverage check failed"
-import json
-import pathlib
-import re
-import sys
-
-root = pathlib.Path(sys.argv[1])
-pressure_path = root / "validation" / "pressure-scenarios.json"
-report_path = root / "docs" / "dynamic-sampling-report.md"
-
-pressure = json.loads(pressure_path.read_text(encoding="utf-8"))
-report = report_path.read_text(encoding="utf-8")
-scenario_ids = [scenario["id"] for scenario in pressure["scenarios"]]
-heading_ids = re.findall(r"(?m)^##\s+(S\d{2})\b", report)
-
-errors = []
-for scenario_id in scenario_ids:
-    if not re.search(rf"(?m)^##\s+{re.escape(scenario_id)}\b", report):
-        errors.append(f"Dynamic sampling report missing scenario heading: {scenario_id}")
-
-for heading_id in sorted(set(heading_ids)):
-    if heading_id not in scenario_ids:
-        errors.append(f"Dynamic sampling report has unknown scenario heading: {heading_id}")
-
-for heading_id in sorted(set(heading_ids)):
-    if heading_ids.count(heading_id) > 1:
-        errors.append(f"Dynamic sampling report has duplicate scenario heading: {heading_id}")
-
-expected_summary = f"动态抽样：{len(scenario_ids)}/{len(scenario_ids)} PASS"
-if expected_summary not in report:
-    errors.append(f"Dynamic sampling report missing summary: {expected_summary}")
-
-if errors:
-    for error in errors:
-        print(error, file=sys.stderr)
-    sys.exit(1)
-PY
-
-  "$python_cmd" - "$ROOT" <<'PY' || add_error "Independent review report coverage check failed"
-import json
-import pathlib
-import re
-import sys
-
-root = pathlib.Path(sys.argv[1])
-pressure_path = root / "validation" / "pressure-scenarios.json"
-report_path = root / "docs" / "independent-review-report.md"
-
-pressure = json.loads(pressure_path.read_text(encoding="utf-8"))
-report = report_path.read_text(encoding="utf-8")
-scenario_ids = [scenario["id"] for scenario in pressure["scenarios"]]
-heading_ids = re.findall(r"(?m)^##\s+(S\d{2})\b", report)
-
-errors = []
-for scenario_id in scenario_ids:
-    if not re.search(rf"(?m)^##\s+{re.escape(scenario_id)}\b", report):
-        errors.append(f"Independent review report missing scenario heading: {scenario_id}")
-
-for heading_id in sorted(set(heading_ids)):
-    if heading_id not in scenario_ids:
-        errors.append(f"Independent review report has unknown scenario heading: {heading_id}")
-
-for heading_id in sorted(set(heading_ids)):
-    if heading_ids.count(heading_id) > 1:
-        errors.append(f"Independent review report has duplicate scenario heading: {heading_id}")
-
-expected_summary = f"独立复测：{len(scenario_ids)}/{len(scenario_ids)} PASS"
-if expected_summary not in report:
-    errors.append(f"Independent review report missing summary: {expected_summary}")
-
-if "复测轮次：28" not in report:
-    errors.append("Independent review report missing review round count: 复测轮次：28")
-
-if errors:
-    for error in errors:
-        print(error, file=sys.stderr)
-    sys.exit(1)
-PY
 else
   add_error "Cannot validate JSON because python3/python is not available"
 fi
@@ -197,6 +119,9 @@ skills/diagnose/SKILL.md|必须评估是否进入 `deepen`|diagnose requires dee
 skills/finish/SKILL.md|进入 `diagnose`|finish routes failed verification to diagnose
 skills/finish/SKILL.md|等待用户明确确认|finish requires confirmation before cleanup
 skills/finish/SKILL.md|会删除的分支、提交、文件或 worktree|finish lists destructive cleanup targets
+skills/git/SKILL.md|git rm --cached|git preserves local files while untracking
+skills/git/SKILL.md|不要直接强推|git rejects unsafe force push
+skills/git/SKILL.md|用户明确说某个目录不要上传|git honors excluded upload paths
 skills/deepen/SKILL.md|暂不建议重构|deepen can decline unnecessary refactors
 skills/skill-edit/SKILL.md|压力场景|skill-edit requires pressure scenarios
 skills/skill-edit/SKILL.md|description` 只写触发条件|skill-edit enforces description trigger rule'

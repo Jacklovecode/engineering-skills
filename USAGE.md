@@ -47,6 +47,12 @@ start -> zoom-out -> deepen -> clarify -> grill -> plan -> execute -> finish
 start -> skill-edit -> finish
 ```
 
+提交或推送：
+
+```text
+start -> git
+```
+
 ## 示例请求
 
 实现功能：
@@ -87,3 +93,4 @@ start -> skill-edit -> finish
 - 计划不清时，不要直接执行，进入 `grill` 或 `plan`。
 - 验证失败或结果无法解释时，进入 `diagnose`。
 - 准备声明完成前，必须进入 `finish`。
+- 准备提交、推送、合并、创建 PR 或清理分支前，必须进入 `git`。

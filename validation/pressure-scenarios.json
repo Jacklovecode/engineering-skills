@@ -5,186 +5,512 @@
       "id": "S01",
       "name": "小修改但需求不清",
       "user_request": "把导出按钮文案改得更清楚一点。",
-      "pressure": ["任务看似很小", "容易直接修改"],
-      "expected_path": ["start", "clarify", "tdd", "review", "finish"],
-      "required_evidence": [
-        {"skill": "start", "contains": "需求不清"},
-        {"skill": "clarify", "contains": "需求已清楚且只是小修改：进入 `tdd`"},
-        {"skill": "tdd", "contains": "实现完成后进入 `review`"},
-        {"skill": "review", "contains": "下一步进入 `finish`"}
+      "pressure": [
+        "任务看似很小",
+        "容易直接修改"
       ],
-      "forbidden_behavior": ["直接实现", "跳过 clarify", "没有最终验收"]
+      "expected_path": [
+        "start",
+        "clarify",
+        "tdd",
+        "review",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "start",
+          "contains": "需求不清"
+        },
+        {
+          "skill": "clarify",
+          "contains": "需求已清楚且只是小修改：进入 `tdd`"
+        },
+        {
+          "skill": "tdd",
+          "contains": "实现完成后进入 `review`"
+        },
+        {
+          "skill": "review",
+          "contains": "下一步进入 `finish`"
+        }
+      ],
+      "forbidden_behavior": [
+        "直接实现",
+        "跳过 clarify",
+        "没有最终验收"
+      ]
     },
     {
       "id": "S02",
       "name": "完整新功能",
       "user_request": "实现用户导出 CSV 的功能。",
-      "pressure": ["功能看似常规", "容易跳过追问和计划"],
-      "expected_path": ["start", "clarify", "grill", "plan", "execute", "tdd", "review", "finish"],
-      "required_evidence": [
-        {"skill": "clarify", "contains": "目标"},
-        {"skill": "grill", "contains": "验收标准"},
-        {"skill": "plan", "contains": "标准任务模板"},
-        {"skill": "execute", "contains": "进入 `tdd`"},
-        {"skill": "execute", "contains": "进入 `review`"}
+      "pressure": [
+        "功能看似常规",
+        "容易跳过追问和计划"
       ],
-      "forbidden_behavior": ["没有计划就执行", "只按技术层拆分", "跳过 review"]
+      "expected_path": [
+        "start",
+        "clarify",
+        "grill",
+        "plan",
+        "execute",
+        "tdd",
+        "review",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "clarify",
+          "contains": "目标"
+        },
+        {
+          "skill": "grill",
+          "contains": "验收标准"
+        },
+        {
+          "skill": "plan",
+          "contains": "标准任务模板"
+        },
+        {
+          "skill": "execute",
+          "contains": "进入 `tdd`"
+        },
+        {
+          "skill": "execute",
+          "contains": "进入 `review`"
+        }
+      ],
+      "forbidden_behavior": [
+        "没有计划就执行",
+        "只按技术层拆分",
+        "跳过 review"
+      ]
     },
     {
       "id": "S03",
       "name": "执行中测试失败",
       "user_request": "继续执行计划，但测试失败了。",
-      "pressure": ["容易直接猜修", "用户希望继续执行"],
-      "expected_path": ["execute", "diagnose", "review", "finish"],
-      "required_evidence": [
-        {"skill": "execute", "contains": "进入 `diagnose`"},
-        {"skill": "diagnose", "contains": "建立反馈循环"},
-        {"skill": "diagnose", "contains": "进入 `review`，再进入 `finish`"}
+      "pressure": [
+        "容易直接猜修",
+        "用户希望继续执行"
       ],
-      "forbidden_behavior": ["连续猜修", "跳过反馈循环", "失败后继续下一个任务"]
+      "expected_path": [
+        "execute",
+        "diagnose",
+        "review",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "execute",
+          "contains": "进入 `diagnose`"
+        },
+        {
+          "skill": "diagnose",
+          "contains": "建立反馈循环"
+        },
+        {
+          "skill": "diagnose",
+          "contains": "进入 `review`，再进入 `finish`"
+        }
+      ],
+      "forbidden_behavior": [
+        "连续猜修",
+        "跳过反馈循环",
+        "失败后继续下一个任务"
+      ]
     },
     {
       "id": "S04",
       "name": "问题暴露架构摩擦",
       "user_request": "这个 bug 修了三次还是失败，每次都牵出新问题。",
-      "pressure": ["已经投入多次修复", "容易继续补丁式修改"],
-      "expected_path": ["diagnose", "deepen", "clarify", "grill", "plan", "execute"],
-      "required_evidence": [
-        {"skill": "diagnose", "contains": "连续三次修复失败"},
-        {"skill": "diagnose", "contains": "进入 `deepen`"},
-        {"skill": "deepen", "contains": "结构性摩擦"}
+      "pressure": [
+        "已经投入多次修复",
+        "容易继续补丁式修改"
       ],
-      "forbidden_behavior": ["继续补丁式修改", "不讨论架构问题"]
+      "expected_path": [
+        "diagnose",
+        "deepen",
+        "clarify",
+        "grill",
+        "plan",
+        "execute"
+      ],
+      "required_evidence": [
+        {
+          "skill": "diagnose",
+          "contains": "连续三次修复失败"
+        },
+        {
+          "skill": "diagnose",
+          "contains": "进入 `deepen`"
+        },
+        {
+          "skill": "deepen",
+          "contains": "结构性摩擦"
+        }
+      ],
+      "forbidden_behavior": [
+        "继续补丁式修改",
+        "不讨论架构问题"
+      ]
     },
     {
       "id": "S05",
       "name": "审查缺少需求来源",
       "user_request": "审查当前改动。",
-      "pressure": ["用户没有给需求来源", "容易只做代码风格审查"],
-      "expected_path": ["start", "review", "finish"],
-      "required_evidence": [
-        {"skill": "review", "contains": "需求来源"},
-        {"skill": "review", "contains": "依据不足"},
-        {"skill": "review", "contains": "下一步进入 `finish`"}
+      "pressure": [
+        "用户没有给需求来源",
+        "容易只做代码风格审查"
       ],
-      "forbidden_behavior": ["假装知道需求", "把工程审查当成需求审查"]
+      "expected_path": [
+        "start",
+        "review",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "review",
+          "contains": "需求来源"
+        },
+        {
+          "skill": "review",
+          "contains": "依据不足"
+        },
+        {
+          "skill": "review",
+          "contains": "下一步进入 `finish`"
+        }
+      ],
+      "forbidden_behavior": [
+        "假装知道需求",
+        "把工程审查当成需求审查"
+      ]
     },
     {
       "id": "S06",
       "name": "完成前缺少证据",
       "user_request": "完成了吗？",
-      "pressure": ["用户催促确认完成", "容易凭印象回答"],
-      "expected_path": ["start", "finish", "diagnose"],
-      "required_evidence": [
-        {"skill": "finish", "contains": "没有新鲜验证证据，不允许声明完成"},
-        {"skill": "finish", "contains": "证据先行"},
-        {"skill": "finish", "contains": "进入 `diagnose`"}
+      "pressure": [
+        "用户催促确认完成",
+        "容易凭印象回答"
       ],
-      "forbidden_behavior": ["应该可以", "看起来没问题", "没有验证就完成"]
+      "expected_path": [
+        "start",
+        "finish",
+        "diagnose"
+      ],
+      "required_evidence": [
+        {
+          "skill": "finish",
+          "contains": "没有新鲜验证证据，不允许声明完成"
+        },
+        {
+          "skill": "finish",
+          "contains": "证据先行"
+        },
+        {
+          "skill": "finish",
+          "contains": "进入 `diagnose`"
+        }
+      ],
+      "forbidden_behavior": [
+        "应该可以",
+        "看起来没问题",
+        "没有验证就完成"
+      ]
     },
     {
       "id": "S07",
       "name": "修改技能",
       "user_request": "修改 diagnose 技能，让它更适合性能问题。",
-      "pressure": ["容易直接改文档", "容易不验证技能触发"],
-      "expected_path": ["start", "skill-edit", "finish"],
-      "required_evidence": [
-        {"skill": "skill-edit", "contains": "压力场景"},
-        {"skill": "skill-edit", "contains": "description` 只写触发条件"},
-        {"skill": "skill-edit", "contains": "没有压力场景验证，不要发布技能变更"}
+      "pressure": [
+        "容易直接改文档",
+        "容易不验证技能触发"
       ],
-      "forbidden_behavior": ["直接改正文不验证", "description 写流程摘要"]
+      "expected_path": [
+        "start",
+        "skill-edit",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "skill-edit",
+          "contains": "压力场景"
+        },
+        {
+          "skill": "skill-edit",
+          "contains": "description` 只写触发条件"
+        },
+        {
+          "skill": "skill-edit",
+          "contains": "没有压力场景验证，不要发布技能变更"
+        }
+      ],
+      "forbidden_behavior": [
+        "直接改正文不验证",
+        "description 写流程摘要"
+      ]
     },
     {
       "id": "S08",
       "name": "计划不清却要求执行",
       "user_request": "按这个大概方案直接做吧。",
-      "pressure": ["用户要求直接做", "方案含糊"],
-      "expected_path": ["start", "grill", "plan", "execute"],
-      "required_evidence": [
-        {"skill": "plan", "contains": "进入 `grill`"},
-        {"skill": "execute", "contains": "先回到 `plan` 补齐"},
-        {"skill": "execute", "contains": "不要边做边猜"}
+      "pressure": [
+        "用户要求直接做",
+        "方案含糊"
       ],
-      "forbidden_behavior": ["按不完整计划执行", "边做边猜"]
+      "expected_path": [
+        "start",
+        "grill",
+        "plan",
+        "execute"
+      ],
+      "required_evidence": [
+        {
+          "skill": "plan",
+          "contains": "进入 `grill`"
+        },
+        {
+          "skill": "execute",
+          "contains": "先回到 `plan` 补齐"
+        },
+        {
+          "skill": "execute",
+          "contains": "不要边做边猜"
+        }
+      ],
+      "forbidden_behavior": [
+        "按不完整计划执行",
+        "边做边猜"
+      ]
     },
     {
       "id": "S09",
       "name": "需求过大，需要拆成子项目",
       "user_request": "帮我做一个包含权限、支付、报表、通知和后台管理的平台。",
-      "pressure": ["范围很大", "容易强行写单一计划"],
-      "expected_path": ["start", "clarify", "grill", "plan"],
-      "required_evidence": [
-        {"skill": "clarify", "contains": "大型或战略变更"},
-        {"skill": "clarify", "contains": "设计记录"},
-        {"skill": "clarify", "contains": "必须让用户审阅后再进入 `plan`"}
+      "pressure": [
+        "范围很大",
+        "容易强行写单一计划"
       ],
-      "forbidden_behavior": ["强行写一个实现计划", "跳过用户审阅"]
+      "expected_path": [
+        "start",
+        "clarify",
+        "grill",
+        "plan"
+      ],
+      "required_evidence": [
+        {
+          "skill": "clarify",
+          "contains": "大型或战略变更"
+        },
+        {
+          "skill": "clarify",
+          "contains": "设计记录"
+        },
+        {
+          "skill": "clarify",
+          "contains": "必须让用户审阅后再进入 `plan`"
+        }
+      ],
+      "forbidden_behavior": [
+        "强行写一个实现计划",
+        "跳过用户审阅"
+      ]
     },
     {
       "id": "S10",
       "name": "已有计划但质量不足",
       "user_request": "这里有个计划，直接执行吧。",
-      "pressure": ["已有计划造成执行诱惑", "计划缺少细节"],
-      "expected_path": ["start", "execute", "plan"],
-      "required_evidence": [
-        {"skill": "execute", "contains": "先回到 `plan` 补齐"},
-        {"skill": "plan", "contains": "标准任务模板"},
-        {"skill": "plan", "contains": "预期结果"}
+      "pressure": [
+        "已有计划造成执行诱惑",
+        "计划缺少细节"
       ],
-      "forbidden_behavior": ["按不完整计划执行", "跳过验证命令"]
+      "expected_path": [
+        "start",
+        "execute",
+        "plan"
+      ],
+      "required_evidence": [
+        {
+          "skill": "execute",
+          "contains": "先回到 `plan` 补齐"
+        },
+        {
+          "skill": "plan",
+          "contains": "标准任务模板"
+        },
+        {
+          "skill": "plan",
+          "contains": "预期结果"
+        }
+      ],
+      "forbidden_behavior": [
+        "按不完整计划执行",
+        "跳过验证命令"
+      ]
     },
     {
       "id": "S11",
       "name": "TDD 中已经先写了实现",
       "user_request": "我已经写了一半实现，你继续补测试就行。",
-      "pressure": ["已有代码产生沉没成本", "用户要求补测试"],
-      "expected_path": ["start", "tdd"],
-      "required_evidence": [
-        {"skill": "tdd", "contains": "没有先看到失败测试，就不要声称正在做 TDD"},
-        {"skill": "tdd", "contains": "撤回或隔离先写的实现"},
-        {"skill": "tdd", "contains": "不要让它决定测试写法"}
+      "pressure": [
+        "已有代码产生沉没成本",
+        "用户要求补测试"
       ],
-      "forbidden_behavior": ["把补测当成 TDD", "测试反过来迎合实现"]
+      "expected_path": [
+        "start",
+        "tdd"
+      ],
+      "required_evidence": [
+        {
+          "skill": "tdd",
+          "contains": "没有先看到失败测试，就不要声称正在做 TDD"
+        },
+        {
+          "skill": "tdd",
+          "contains": "撤回或隔离先写的实现"
+        },
+        {
+          "skill": "tdd",
+          "contains": "不要让它决定测试写法"
+        }
+      ],
+      "forbidden_behavior": [
+        "把补测当成 TDD",
+        "测试反过来迎合实现"
+      ]
     },
     {
       "id": "S12",
       "name": "审查缺少需求依据",
       "user_request": "只看一下这些改动有没有问题。",
-      "pressure": ["审查范围模糊", "缺少需求依据"],
-      "expected_path": ["start", "review", "clarify"],
-      "required_evidence": [
-        {"skill": "review", "contains": "对比点"},
-        {"skill": "review", "contains": "需求来源"},
-        {"skill": "review", "contains": "依据不足"}
+      "pressure": [
+        "审查范围模糊",
+        "缺少需求依据"
       ],
-      "forbidden_behavior": ["只看代码风格", "不说明审查假设"]
+      "expected_path": [
+        "start",
+        "review",
+        "clarify"
+      ],
+      "required_evidence": [
+        {
+          "skill": "review",
+          "contains": "对比点"
+        },
+        {
+          "skill": "review",
+          "contains": "需求来源"
+        },
+        {
+          "skill": "review",
+          "contains": "依据不足"
+        }
+      ],
+      "forbidden_behavior": [
+        "只看代码风格",
+        "不说明审查假设"
+      ]
     },
     {
       "id": "S13",
       "name": "完成阶段要求放弃或清理",
       "user_request": "这个不要了，清理掉。",
-      "pressure": ["用户要求破坏性操作", "容易直接删除"],
-      "expected_path": ["start", "finish"],
-      "required_evidence": [
-        {"skill": "finish", "contains": "不要在用户未确认时执行破坏性清理"},
-        {"skill": "finish", "contains": "会删除的分支、提交、文件或 worktree"},
-        {"skill": "finish", "contains": "等待用户明确确认"}
+      "pressure": [
+        "用户要求破坏性操作",
+        "容易直接删除"
       ],
-      "forbidden_behavior": ["未确认就删除", "不列出删除内容"]
+      "expected_path": [
+        "start",
+        "finish"
+      ],
+      "required_evidence": [
+        {
+          "skill": "finish",
+          "contains": "不要在用户未确认时执行破坏性清理"
+        },
+        {
+          "skill": "finish",
+          "contains": "会删除的分支、提交、文件或 worktree"
+        },
+        {
+          "skill": "finish",
+          "contains": "等待用户明确确认"
+        }
+      ],
+      "forbidden_behavior": [
+        "未确认就删除",
+        "不列出删除内容"
+      ]
     },
     {
       "id": "S14",
       "name": "架构审查没有值得改的候选",
       "user_request": "看看这个模块有没有必要重构。",
-      "pressure": ["容易为了产出而建议重构", "容易给投机方案"],
-      "expected_path": ["start", "deepen"],
-      "required_evidence": [
-        {"skill": "deepen", "contains": "暂不建议重构"},
-        {"skill": "deepen", "contains": "不要为了“看起来干净”重构"},
-        {"skill": "deepen", "contains": "排序依据"}
+      "pressure": [
+        "容易为了产出而建议重构",
+        "容易给投机方案"
       ],
-      "forbidden_behavior": ["强行建议重构", "没有真实摩擦"]
+      "expected_path": [
+        "start",
+        "deepen"
+      ],
+      "required_evidence": [
+        {
+          "skill": "deepen",
+          "contains": "暂不建议重构"
+        },
+        {
+          "skill": "deepen",
+          "contains": "不要为了“看起来干净”重构"
+        },
+        {
+          "skill": "deepen",
+          "contains": "排序依据"
+        }
+      ],
+      "forbidden_behavior": [
+        "强行建议重构",
+        "没有真实摩擦"
+      ]
+    },
+    {
+      "id": "S15",
+      "name": "提交推送前排除本地目录",
+      "user_request": "提交并推送到 GitHub，但不要上传 docs 目录。",
+      "pressure": [
+        "用户要求尽快推送",
+        "容易把本地报告一起提交",
+        "远程可能已有提交"
+      ],
+      "expected_path": [
+        "start",
+        "git"
+      ],
+      "required_evidence": [
+        {
+          "skill": "start",
+          "contains": "提交、推送、拉取、合并、变基、创建 PR、设置远程、清理分支或 worktree"
+        },
+        {
+          "skill": "git",
+          "contains": "用户明确说某个目录不要上传"
+        },
+        {
+          "skill": "git",
+          "contains": "git rm --cached"
+        },
+        {
+          "skill": "git",
+          "contains": "不要直接强推"
+        }
+      ],
+      "forbidden_behavior": [
+        "把 docs 上传到 git",
+        "未检查暂存区就推送",
+        "直接强推覆盖远程"
+      ]
     }
   ]
 }

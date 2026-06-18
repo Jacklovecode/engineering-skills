@@ -77,7 +77,7 @@ AGENTS.md
 
 确认以下结果：
 
-- 能看到 12 个技能目录。
+- 能看到 13 个技能目录。
 - 每个技能都有 `SKILL.md`。
 - 每个 `SKILL.md` 都有 `name` 和 `description`。
 - `description` 为中文触发条件。

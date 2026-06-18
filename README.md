@@ -28,6 +28,7 @@
 | `diagnose` | 问题诊断：反馈循环、复现、假设、验证、根因、回归。 |
 | `review` | 双轴审查：需求符合度和工程质量。 |
 | `finish` | 完成前验证、风险说明、PR/合并/清理决策。 |
+| `git` | 版本控制操作：提交、推送、合并、PR、远程仓库和清理风险控制。 |
 | `skill-edit` | 创建或修改技能：先压力场景，再写技能，再验证。 |
 
 ## 工作模式
@@ -87,4 +88,4 @@ start -> zoom-out -> deepen -> clarify -> grill -> plan -> execute -> finish
 
 ## English Summary
 
-Engineering Skills is a cross-runtime skill pack for coding agents. It provides a guided workflow for clarification, planning, behavior-first TDD, diagnosis, review, and completion. The core skill content is written in Chinese, while skill names and metadata stay short and English-friendly for platform compatibility.
+Engineering Skills is a cross-runtime skill pack for coding agents. It provides a guided workflow for clarification, planning, behavior-first TDD, diagnosis, review, safe git operations, and completion. The core skill content is written in Chinese, while skill names and metadata stay short and English-friendly for platform compatibility.
