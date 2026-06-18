@@ -2,13 +2,51 @@
 
 ## 入口
 
-日常使用从 `start` 开始。
+日常使用建议从 `start` 开始。
 
 ```text
 请使用 engineering-skills 的 start 判断这次任务应该走哪条路径。
 ```
 
-`start` 只负责路由，不负责实现、诊断或审查。
+`start` 是路由入口，只负责判断应该进入哪个技能，不负责实现、诊断或审查。
+
+## 触发机制
+
+安装后，技能包不会像后台程序一样主动执行。具体技能是否被加载，取决于智能体平台是否读取了技能目录、入口文档或 hook 注入的上下文。
+
+Codex 插件环境：
+
+```text
+读取 .codex-plugin/plugin.json
+  -> 注册 skills/ 技能目录
+  -> 读取 hooks/hooks-codex.json
+  -> 会话开始时通过 SessionStart hook 注入 start
+  -> start 根据用户任务路由到具体技能
+```
+
+Claude、Gemini 或通用智能体：
+
+```text
+读取 CLAUDE.md / GEMINI.md / AGENTS.md
+  -> 将 skills/start/SKILL.md 作为入口
+  -> 任务明确匹配时再读取对应技能
+```
+
+用户也可以显式触发：
+
+```text
+使用 start 判断路径
+使用 diagnose 诊断这个问题
+使用 plan 拆分实现任务
+```
+
+例如“我要设计一个新功能”通常不应直接进入 `plan`，而是先走：
+
+```text
+start -> clarify -> grill -> plan
+```
+
+只有当需求或设计已经明确，但缺少可执行实现路径时，才直接进入 `plan`。
 
 ## 常见路径
 

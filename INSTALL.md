@@ -28,6 +28,8 @@ Windows: $HOME\.engineering-skills
 macOS / Linux: $HOME/.engineering-skills
 ```
 
+安装脚本复制的是运行时需要的技能、入口文件和 hook，不会复制开发验证目录。完整验证、压力测试和发布前检查仍在仓库目录中运行。
+
 安装脚本不会执行 git 操作。
 
 ## 手动安装
@@ -39,6 +41,8 @@ macOS / Linux: $HOME/.engineering-skills
 3. 让平台入口先加载 `skills/start/SKILL.md`。
 
 ## 安装后验证
+
+以下命令在仓库目录中运行，用于验证发布包结构和压力场景。
 
 Windows:
 
