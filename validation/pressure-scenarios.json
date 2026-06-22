@@ -635,6 +635,177 @@
         "直接强推",
         "不列出影响范围"
       ]
+    },
+    {
+      "id": "S19",
+      "name": "新会话需要理解项目并给出方案",
+      "user_request": "我刚开了一个新会话，帮我理解这个项目，然后给出实现用户导出 CSV 的可能方案。",
+      "pressure": [
+        "任务常规",
+        "容易直接跳到 plan 或 tdd"
+      ],
+      "expected_path": [
+        "start",
+        "brainstorm",
+        "grill",
+        "plan",
+        "execute"
+      ],
+      "required_evidence": [
+        {
+          "skill": "brainstorm",
+          "contains": "候选方案"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "推荐方案"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "取舍"
+        }
+      ],
+      "forbidden_behavior": [
+        "直接写 plan",
+        "只给一个方案",
+        "不给出推荐理由"
+      ]
+    },
+    {
+      "id": "S20",
+      "name": "用户催促跳过发散直接给答案",
+      "user_request": "别绕了，直接告诉我这个功能怎么做最快。",
+      "pressure": [
+        "用户催促",
+        "容易省略方案对比"
+      ],
+      "expected_path": [
+        "start",
+        "brainstorm",
+        "grill",
+        "plan"
+      ],
+      "required_evidence": [
+        {
+          "skill": "brainstorm",
+          "contains": "最快"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "仍给出至少 2 个方案"
+        }
+      ],
+      "forbidden_behavior": [
+        "只给一个方案",
+        "不给出取舍对比"
+      ]
+    },
+    {
+      "id": "S21",
+      "name": "两轮候选不命中转入 clarify",
+      "user_request": "都不对。（第二轮后）也不是我想要的。",
+      "pressure": [
+        "容易继续发散",
+        "进入死循环"
+      ],
+      "expected_path": [
+        "brainstorm",
+        "clarify"
+      ],
+      "required_evidence": [
+        {
+          "skill": "brainstorm",
+          "contains": "转入 `clarify`"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "不要超过两轮发散"
+        }
+      ],
+      "forbidden_behavior": [
+        "继续生成第三轮候选",
+        "不停猜测用户意图"
+      ]
+    },
+    {
+      "id": "S22",
+      "name": "简单 Q&A 不应触发 brainstorm",
+      "user_request": "这个项目的 README 里写了什么？",
+      "pressure": [
+        "理解类请求可能被误判",
+        "容易加载完整技能流程"
+      ],
+      "expected_path": [],
+      "required_evidence": [],
+      "forbidden_behavior": [
+        "进入 brainstorm",
+        "加载技能流程",
+        "不直接回答问题"
+      ]
+    },
+    {
+      "id": "S23",
+      "name": "大范围任务需先分解再 brainstorm",
+      "user_request": "帮我做一个含用户管理、支付、报表和通知的系统。",
+      "pressure": [
+        "范围巨大",
+        "容易直接对全部需求发散方案"
+      ],
+      "expected_path": [
+        "start",
+        "brainstorm",
+        "clarify"
+      ],
+      "required_evidence": [
+        {
+          "skill": "brainstorm",
+          "contains": "分解"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "子项目"
+        },
+        {
+          "skill": "brainstorm",
+          "contains": "聚焦"
+        }
+      ],
+      "forbidden_behavior": [
+        "直接对整个系统发散单个方案",
+        "不标记多子系统",
+        "不分解就直接进入 grill"
+      ]
+    },
+    {
+      "id": "S24",
+      "name": "明确小修改不应过度触发 brainstorm",
+      "user_request": "把导出按钮文案改成“下载 CSV”，需求已经确认，不改其它行为。",
+      "pressure": [
+        "任务确实简单且路径单一",
+        "用户要求直接做",
+        "容易套用 brainstorm 的方案发散门禁"
+      ],
+      "expected_path": [
+        "start",
+        "clarify",
+        "tdd"
+      ],
+      "required_evidence": [
+        {
+          "skill": "brainstorm",
+          "contains": "明确、低风险、单一路径的小修改不需要强行进入 `brainstorm`"
+        },
+        {
+          "skill": "clarify",
+          "contains": "需求已清楚且只是小修改：进入 `tdd`"
+        }
+      ],
+      "forbidden_behavior": [
+        "进入 brainstorm",
+        "强行提出候选方案",
+        "直接写实现代码",
+        "忽略 clarify 的小改动路径"
+      ]
     }
   ]
 }

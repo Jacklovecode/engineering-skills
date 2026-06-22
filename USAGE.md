@@ -2,51 +2,22 @@
 
 ## 入口
 
-日常使用建议从 `start` 开始。
+日常使用从 `start` 开始。
+
+智能体应默认从 `start` 判断这次任务应该走哪条路径。用户通常不需要显式说出 `start`。
+
+`start` 只负责路由，不负责实现、诊断或审查。
+
+用户不需要记住技能名或手动写出技能链。通常只描述目标、范围和约束即可：
 
 ```text
-请使用 engineering-skills 的 start 判断这次任务应该走哪条路径。
+帮我审查当前项目。
+帮我修复这个失败的测试。
+帮我实现用户导出 CSV。
+先帮我看懂这个模块。
 ```
 
-`start` 是路由入口，只负责判断应该进入哪个技能，不负责实现、诊断或审查。
-
-## 触发机制
-
-安装后，技能包不会像后台程序一样主动执行。具体技能是否被加载，取决于智能体平台是否读取了技能目录、入口文档或 hook 注入的上下文。
-
-Codex 插件环境：
-
-```text
-读取 .codex-plugin/plugin.json
-  -> 注册 skills/ 技能目录
-  -> 读取 hooks/hooks-codex.json
-  -> 会话开始时通过 SessionStart hook 注入 start
-  -> start 根据用户任务路由到具体技能
-```
-
-Claude、Gemini 或通用智能体：
-
-```text
-读取 CLAUDE.md / GEMINI.md / AGENTS.md
-  -> 将 skills/start/SKILL.md 作为入口
-  -> 任务明确匹配时再读取对应技能
-```
-
-用户也可以显式触发：
-
-```text
-使用 start 判断路径
-使用 diagnose 诊断这个问题
-使用 plan 拆分实现任务
-```
-
-例如“我要设计一个新功能”通常不应直接进入 `plan`，而是先走：
-
-```text
-start -> clarify -> grill -> plan
-```
-
-只有当需求或设计已经明确，但缺少可执行实现路径时，才直接进入 `plan`。
+智能体应由 `start` 判断路径，并简短说明将使用哪些技能。
 
 ## 常见路径
 
@@ -70,7 +41,22 @@ start -> diagnose -> tdd -> review -> finish
 新功能：
 
 ```text
-start -> clarify -> grill -> plan -> execute -> finish
+start -> clarify
+  -> 目标清楚但方案方向未定时进入 brainstorm
+  -> 方案需要压力测试时进入 grill
+  -> plan -> execute -> finish
+```
+
+新会话理解项目：
+
+```text
+start -> zoom-out
+```
+
+新会话中目标已清楚，需要理解项目后比较方案：
+
+```text
+start -> brainstorm -> grill -> plan -> execute -> finish
 ```
 
 复杂架构：
@@ -96,38 +82,40 @@ start -> git
 实现功能：
 
 ```text
-使用 start 帮我判断路径，并实现“用户可以重置密码”这个功能。
+帮我实现“用户可以重置密码”这个功能。
 ```
 
 诊断问题：
 
 ```text
-使用 diagnose 诊断这个测试为什么偶发失败，不要直接猜修。
+诊断这个测试为什么偶发失败，不要直接猜修。
 ```
 
 审查改动：
 
 ```text
-使用 review 检查当前改动是否满足需求，以及工程质量是否可靠。
+检查当前改动是否满足需求，以及工程质量是否可靠。
 ```
 
 架构改进：
 
 ```text
-使用 zoom-out 和 deepen 看看这个模块是否有值得重构的结构性摩擦。
+看看这个模块是否有值得重构的结构性摩擦。
 ```
 
 完成前验收：
 
 ```text
-使用 finish 做最终验收，确认结果是不是我需要的，产物是不是正确的。
+做最终验收，确认结果是不是我需要的，产物是不是正确的。
 ```
 
 ## 使用原则
 
 - 明显匹配技能时，先读取对应 `SKILL.md`。
 - 不确定时，先用 `start` 选择路径。
+- 用户显式点名某个技能时，优先按该技能处理；用户没有点名时，由 `start` 路由。
 - 需求不清时，不要直接实现，进入 `clarify`。
+- 只是理解系统时，进入 `zoom-out`；目标已清楚但需要比较方案时，进入 `brainstorm`。
 - 计划不清时，不要直接执行，进入 `grill` 或 `plan`。
 - 验证失败或结果无法解释时，进入 `diagnose`。
 - 准备声明完成前，必须进入 `finish`。
@@ -150,6 +138,13 @@ skills/review/scripts/collect-context.ps1
 skills/review/scripts/collect-context.sh
 skills/finish/scripts/collect-evidence.ps1
 skills/finish/scripts/collect-evidence.sh
+```
+
+Windows 如果遇到执行策略限制，可使用：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\simulate-pressure.ps1
 ```
 
 脚本不会自动提交或推送。涉及上传到 GitHub 时，仍然必须使用 `git` 技能列出上传清单并等待用户确认。

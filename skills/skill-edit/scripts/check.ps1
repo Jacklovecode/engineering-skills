@@ -36,7 +36,7 @@ if (-not (Test-Path -LiteralPath $skillsRoot)) {
       Add-Error "$($dir.Name)/SKILL.md 的 description 应使用中文触发条件"
     }
 
-    if ($description -match '流程|步骤|先.*再|然后') {
+    if ($description -match '\u6d41\u7a0b|\u6b65\u9aa4|\u5148.*\u518d|\u7136\u540e') {
       Add-Error "$($dir.Name)/SKILL.md 的 description 可能包含流程摘要，应只写触发条件"
     }
   }

@@ -25,7 +25,8 @@ Developed with assistance from OpenAI Codex for design, organization, and valida
 | --- | --- |
 | `start` | Entry router. Selects the right skill path before action. |
 | `zoom-out` | Understand code context, module relationships, data flow, and impact range. |
-| `deepen` | Find architecture deepening opportunities, reduce coupling, and improve testability. |
+| `deepen` | Find architecture improvement opportunities, reduce coupling, and improve module depth and testability. |
+| `brainstorm` | Generate and compare candidate approaches when the goal is clear but the direction is not. |
 | `clarify` | Clarify requirements, success criteria, boundaries, domain language, and decisions. |
 | `grill` | Stress-test ideas, plans, and designs before implementation. |
 | `plan` | Convert confirmed requirements into task-layered implementation plans. |
@@ -33,7 +34,7 @@ Developed with assistance from OpenAI Codex for design, organization, and valida
 | `tdd` | Behavior-first TDD: failing test, minimal implementation, refactor. |
 | `diagnose` | Diagnose failures with feedback loops, reproduction, hypotheses, evidence, root cause, and regression checks. |
 | `review` | Review requirement fit and engineering quality. |
-| `finish` | Final acceptance before claiming completion, merging, or delivery. |
+| `finish` | Completion gate before claiming completion, merging, or delivery. |
 | `git` | Safe version-control operations: commits, pushes, merges, PRs, remotes, and cleanup. |
 | `skill-edit` | Create or modify skills with pressure scenarios and validation. |
 
@@ -41,11 +42,23 @@ Developed with assistance from OpenAI Codex for design, organization, and valida
 
 Use guided mode by default:
 
+- Users only need to describe the goal, scope, and constraints. They do not need to memorize or manually choose skill chains.
+- `start` routes the request to the right skill path and briefly explains the routing decision.
 - If a task clearly matches a skill, load that skill first.
 - If the match is unclear, provide a short routing suggestion.
 - User goals and boundaries are important, but they cannot override validation, safety confirmation, or completion evidence.
 
 This is a routed workflow, not a mandatory long chain. `start` chooses the shortest reliable path for the task.
+
+Common boundaries:
+
+- `zoom-out` understands the system and impact range.
+- `clarify` aligns goals, boundaries, and success criteria.
+- `brainstorm` compares multiple approaches after the goal is clear.
+- `grill` stress-tests a selected idea, plan, or design.
+- `deepen` finds architecture improvement and refactoring opportunities.
+- `review` checks requirement fit and engineering quality.
+- `diagnose` finds the root cause of concrete failures.
 
 All complete paths converge at `finish`: verify that the result is what the user wanted, verify that the code, documentation, or skill artifact is correct, and report evidence and residual risk.
 
@@ -65,7 +78,7 @@ Windows:
 git clone https://github.com/Jacklovecode/engineering-skills.git
 cd engineering-skills
 .\scripts\install.ps1
-.\scripts\validate.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate.ps1
 ```
 
 macOS / Linux:
@@ -76,6 +89,7 @@ cd engineering-skills
 chmod +x scripts/install.sh scripts/validate.sh scripts/simulate-pressure.sh
 ./scripts/install.sh
 ./scripts/validate.sh
+./scripts/simulate-pressure.sh
 ```
 
 The install scripts copy the skill pack and platform entry files. They do not run git operations.

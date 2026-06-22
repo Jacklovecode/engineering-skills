@@ -28,8 +28,6 @@ Windows: $HOME\.engineering-skills
 macOS / Linux: $HOME/.engineering-skills
 ```
 
-安装脚本复制的是运行时需要的技能、入口文件和 hook，不会复制开发验证目录。完整验证、压力测试和发布前检查仍在仓库目录中运行。
-
 安装脚本不会执行 git 操作。
 
 ## 手动安装
@@ -42,12 +40,10 @@ macOS / Linux: $HOME/.engineering-skills
 
 ## 安装后验证
 
-以下命令在仓库目录中运行，用于验证发布包结构和压力场景。
-
 Windows:
 
 ```powershell
-.\scripts\validate.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate.ps1
 ```
 
 macOS / Linux:
@@ -112,7 +108,7 @@ AGENTS.md
 
 确认以下结果：
 
-- 能看到 13 个技能目录。
+- 能看到 14 个技能目录。
 - 每个技能都有 `SKILL.md`。
 - 每个 `SKILL.md` 都有 `name` 和 `description`。
 - `description` 为中文触发条件。
