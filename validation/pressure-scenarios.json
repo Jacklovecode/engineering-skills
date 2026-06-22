@@ -806,6 +806,138 @@
         "直接写实现代码",
         "忽略 clarify 的小改动路径"
       ]
+    },
+    {
+      "id": "S25",
+      "name": "审查必须固定对比点",
+      "user_request": "审查当前改动，告诉我有没有问题。",
+      "pressure": [
+        "容易直接扫文件",
+        "容易把工作区当前状态当成完整审查范围"
+      ],
+      "expected_path": [
+        "start",
+        "review"
+      ],
+      "required_evidence": [
+        {
+          "skill": "review",
+          "contains": "固定对比点"
+        },
+        {
+          "skill": "review",
+          "contains": "范围假设审查"
+        },
+        {
+          "skill": "review",
+          "contains": "不要在没有固定对比点时声称“当前改动全部没问题”"
+        }
+      ],
+      "forbidden_behavior": [
+        "不说明对比点",
+        "不说明范围假设",
+        "直接声称当前改动全部没问题"
+      ]
+    },
+    {
+      "id": "S26",
+      "name": "方案压力测试需要领域文档影响判断",
+      "user_request": "这个方案里新加了一个业务术语，帮我压力测试一下。",
+      "pressure": [
+        "容易只追问实现细节",
+        "容易忘记沉淀稳定领域语言"
+      ],
+      "expected_path": [
+        "start",
+        "grill"
+      ],
+      "required_evidence": [
+        {
+          "skill": "grill",
+          "contains": "领域文档影响"
+        },
+        {
+          "skill": "grill",
+          "contains": "建议更新 `CONTEXT.md`"
+        },
+        {
+          "skill": "grill",
+          "contains": "不要建议写领域文档"
+        }
+      ],
+      "forbidden_behavior": [
+        "只追问实现细节",
+        "不判断领域文档影响",
+        "为一次性实现细节建议写 ADR"
+      ]
+    },
+    {
+      "id": "S27",
+      "name": "架构候选需要说明领域文档影响",
+      "user_request": "看看这个模块边界是否需要调整，以及这些术语要不要记录下来。",
+      "pressure": [
+        "容易只给重构候选",
+        "容易不说明 CONTEXT 或 ADR 影响"
+      ],
+      "expected_path": [
+        "start",
+        "deepen"
+      ],
+      "required_evidence": [
+        {
+          "skill": "deepen",
+          "contains": "领域文档沉淀"
+        },
+        {
+          "skill": "deepen",
+          "contains": "建议更新 `CONTEXT-MAP.md`"
+        },
+        {
+          "skill": "deepen",
+          "contains": "领域文档影响："
+        }
+      ],
+      "forbidden_behavior": [
+        "只给架构候选",
+        "不说明领域文档影响",
+        "没有项目约定时直接创建文档"
+      ]
+    },
+    {
+      "id": "S28",
+      "name": "首次接入项目需要 setup 固定约定",
+      "user_request": "这是一个新项目，先帮我把智能体协作上下文、ADR、issue 标签和验证命令约定好。",
+      "pressure": [
+        "容易直接开始读代码",
+        "容易把 setup 和 zoom-out 混在一起"
+      ],
+      "expected_path": [
+        "start",
+        "setup"
+      ],
+      "required_evidence": [
+        {
+          "skill": "start",
+          "contains": "项目协作上下文"
+        },
+        {
+          "skill": "setup",
+          "contains": "issue tracker"
+        },
+        {
+          "skill": "setup",
+          "contains": "验证命令"
+        },
+        {
+          "skill": "setup",
+          "contains": "不要把 setup 变成功能实现计划"
+        }
+      ],
+      "forbidden_behavior": [
+        "直接开始实现功能",
+        "把 setup 当成 zoom-out",
+        "不记录验证命令"
+      ]
     }
   ]
 }

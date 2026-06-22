@@ -24,6 +24,7 @@ Developed with assistance from OpenAI Codex for design, organization, and valida
 | Skill | Purpose |
 | --- | --- |
 | `start` | Entry router. Selects the right skill path before action. |
+| `setup` | Establish project collaboration context, domain docs, ADRs, issue tracker, labels, and validation commands. |
 | `zoom-out` | Understand code context, module relationships, data flow, and impact range. |
 | `deepen` | Find architecture improvement opportunities, reduce coupling, and improve module depth and testability. |
 | `brainstorm` | Generate and compare candidate approaches when the goal is clear but the direction is not. |
@@ -52,6 +53,7 @@ This is a routed workflow, not a mandatory long chain. `start` chooses the short
 
 Common boundaries:
 
+- `setup` establishes project conventions, domain docs, ADR location, issue tracker, labels, and validation commands.
 - `zoom-out` understands the system and impact range.
 - `clarify` aligns goals, boundaries, and success criteria.
 - `brainstorm` compares multiple approaches after the goal is clear.

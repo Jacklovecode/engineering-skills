@@ -45,6 +45,18 @@ for scenario in data["scenarios"]:
     report.append("")
     report.append("Checks:")
 
+    for skill in scenario["expected_path"]:
+        if not skill:
+            continue
+        skill_file = root / "skills" / skill / "SKILL.md"
+        if skill_file.exists():
+            report.append(f"- PASS: expected path skill exists: `{skill}`")
+        else:
+            passed = False
+            msg = f"Expected path references missing skill: {skill}"
+            errors.append(f"{scenario['id']}: {msg}")
+            report.append(f"- FAIL: {msg}")
+
     for check in scenario["required_evidence"]:
         skill_file = root / "skills" / check["skill"] / "SKILL.md"
         if not skill_file.exists():
@@ -61,6 +73,15 @@ for scenario in data["scenarios"]:
             msg = f"`{check['skill']}` missing `{check['contains']}`"
             errors.append(f"{scenario['id']}: {msg}")
             report.append(f"- FAIL: {msg}")
+
+    for forbidden in scenario["forbidden_behavior"]:
+        if not str(forbidden).strip():
+            passed = False
+            msg = "Forbidden behavior entry must not be empty"
+            errors.append(f"{scenario['id']}: {msg}")
+            report.append(f"- FAIL: {msg}")
+        else:
+            report.append(f"- PASS: forbidden behavior documented: {forbidden}")
 
     report.append("")
     report.append("Result: PASS" if passed else "Result: FAIL")

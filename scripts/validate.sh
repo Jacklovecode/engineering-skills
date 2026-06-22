@@ -60,7 +60,7 @@ if [ ! -d "$ROOT/skills" ]; then
   add_error "Missing skills directory"
 else
   skill_count=$(find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
-  [ "$skill_count" = "14" ] || add_error "Expected 14 skill directories, found $skill_count"
+  [ "$skill_count" = "15" ] || add_error "Expected 15 skill directories, found $skill_count"
 
   find "$ROOT/skills" -mindepth 1 -maxdepth 1 -type d | sort | while IFS= read -r dir; do
     skill_file="$dir/SKILL.md"
@@ -109,6 +109,7 @@ else
 fi
 
 scenario_checks='skills/start/SKILL.md|需求不清|start routes unclear requirements
+skills/start/SKILL.md|项目协作上下文|start routes project setup context
 skills/start/SKILL.md|不能覆盖这些质量检查点|start protects quality gates from skip requests
 skills/clarify/SKILL.md|重大或方向性变更|clarify handles large changes
 skills/clarify/SKILL.md|必须让用户审阅后再进入 `plan`|clarify requires review before large plans
@@ -146,6 +147,8 @@ skills/git/SKILL.md|skills/git/scripts/guard.ps1|git exposes dangerous command g
 skills/deepen/SKILL.md|暂不建议重构|deepen can decline unnecessary refactors
 skills/deepen/SKILL.md|skills/deepen/scripts/collect-architecture-context.ps1|deepen exposes architecture context helper script
 skills/skill-edit/SKILL.md|压力场景|skill-edit requires pressure scenarios
+skills/setup/SKILL.md|issue tracker|setup captures issue tracker conventions
+skills/setup/SKILL.md|验证命令|setup captures validation commands
 skills/brainstorm/SKILL.md|候选方案|brainstorm generates candidate approaches
 skills/brainstorm/SKILL.md|转入 `clarify`|brainstorm escalates to clarify after two rounds
 skills/brainstorm/SKILL.md|不要超过两轮发散|brainstorm limits to two rounds of divergence

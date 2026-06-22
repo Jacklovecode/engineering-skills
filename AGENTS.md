@@ -5,6 +5,7 @@ Use `skills/start/SKILL.md` as the routing entry point.
 When a task clearly matches another skill, read that skill before acting:
 
 - `zoom-out`: unfamiliar code area, call graph, data flow, impact range.
+- `setup`: project collaboration context, domain docs, ADRs, issue tracker, labels, validation commands.
 - `deepen`: architecture refinement, refactoring opportunities, coupling, testability.
 - `brainstorm`: clear goal with multiple candidate approaches, trade-off comparison after relevant context is understood.
 - `clarify`: unclear requirements, new features, behavior changes.

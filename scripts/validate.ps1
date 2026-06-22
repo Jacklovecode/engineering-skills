@@ -67,8 +67,8 @@ if (-not (Test-Path -LiteralPath $skillsRoot)) {
   Add-Error "Missing skills directory"
 } else {
   $skillDirs = Get-ChildItem -LiteralPath $skillsRoot -Directory
-  if ($skillDirs.Count -ne 14) {
-    Add-Error "Expected 14 skill directories, found $($skillDirs.Count)"
+  if ($skillDirs.Count -ne 15) {
+    Add-Error "Expected 15 skill directories, found $($skillDirs.Count)"
   }
 
   foreach ($dir in $skillDirs) {
@@ -119,6 +119,7 @@ foreach ($file in $jsonFiles) {
 
 $scenarioChecks = @(
   @{ File = 'skills/start/SKILL.md'; Pattern = '需求不清'; Label = 'start routes unclear requirements' },
+  @{ File = 'skills/start/SKILL.md'; Pattern = '项目协作上下文'; Label = 'start routes project setup context' },
   @{ File = 'skills/start/SKILL.md'; Pattern = '不能覆盖这些质量检查点'; Label = 'start protects quality gates from skip requests' },
   @{ File = 'skills/clarify/SKILL.md'; Pattern = '重大或方向性变更'; Label = 'clarify handles large changes' },
   @{ File = 'skills/clarify/SKILL.md'; Pattern = '必须让用户审阅后再进入 `plan`'; Label = 'clarify requires review before large plans' },
@@ -156,6 +157,8 @@ $scenarioChecks = @(
   @{ File = 'skills/deepen/SKILL.md'; Pattern = '暂不建议重构'; Label = 'deepen can decline unnecessary refactors' },
   @{ File = 'skills/deepen/SKILL.md'; Pattern = 'skills/deepen/scripts/collect-architecture-context.ps1'; Label = 'deepen exposes architecture context helper script' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = '压力场景'; Label = 'skill-edit requires pressure scenarios' },
+  @{ File = 'skills/setup/SKILL.md'; Pattern = 'issue tracker'; Label = 'setup captures issue tracker conventions' },
+  @{ File = 'skills/setup/SKILL.md'; Pattern = '验证命令'; Label = 'setup captures validation commands' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = 'description` 只写触发条件'; Label = 'skill-edit enforces description trigger rule' }
 )
 

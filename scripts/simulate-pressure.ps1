@@ -32,6 +32,22 @@ foreach ($scenario in $scenarioData.scenarios) {
   $report.Add("") | Out-Null
   $report.Add("Checks:") | Out-Null
 
+  foreach ($skill in $scenario.expected_path) {
+    $skillName = [string]$skill
+    if (-not $skillName) {
+      continue
+    }
+    $skillFile = Join-Path $root ("skills/{0}/SKILL.md" -f $skillName)
+    if (Test-Path -LiteralPath $skillFile) {
+      $report.Add("- PASS: expected path skill exists: $skillName") | Out-Null
+    } else {
+      $scenarioPass = $false
+      $message = "Expected path references missing skill: $skillName"
+      $errors.Add("$($scenario.id): $message") | Out-Null
+      $report.Add("- FAIL: $message") | Out-Null
+    }
+  }
+
   foreach ($check in $scenario.required_evidence) {
     $skillFile = Join-Path $root ("skills/{0}/SKILL.md" -f $check.skill)
     if (-not (Test-Path -LiteralPath $skillFile)) {
@@ -50,6 +66,18 @@ foreach ($scenario in $scenarioData.scenarios) {
       $message = "$($check.skill) missing $($check.contains)"
       $errors.Add("$($scenario.id): $message") | Out-Null
       $report.Add("- FAIL: $message") | Out-Null
+    }
+  }
+
+  foreach ($forbidden in $scenario.forbidden_behavior) {
+    $text = [string]$forbidden
+    if ([string]::IsNullOrWhiteSpace($text)) {
+      $scenarioPass = $false
+      $message = "Forbidden behavior entry must not be empty"
+      $errors.Add("$($scenario.id): $message") | Out-Null
+      $report.Add("- FAIL: $message") | Out-Null
+    } else {
+      $report.Add("- PASS: forbidden behavior documented: $text") | Out-Null
     }
   }
 
