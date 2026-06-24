@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 set -eu
+export LC_ALL=C
 
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 ERRORS_FILE=$(mktemp)
@@ -78,7 +79,9 @@ else
     [ -n "$name" ] || add_error "Missing or invalid name in $dir_name/SKILL.md"
     [ "$name" = "$dir_name" ] || add_error "Skill name '$name' does not match directory '$dir_name'"
     [ -n "$description" ] || add_error "Missing description in $dir_name/SKILL.md"
-    printf '%s' "$description" | grep -q '[一-龥]' || add_error "Description should be Chinese in $dir_name/SKILL.md"
+    if ! printf '%s' "$description" | python3 -c "import sys,re; sys.exit(0 if re.search(r'[\u4e00-\u9fa5]', sys.stdin.read()) else 1)"; then
+      add_error "Description should be Chinese in $dir_name/SKILL.md"
+    fi
   done
 fi
 
