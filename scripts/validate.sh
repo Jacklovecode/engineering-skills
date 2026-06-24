@@ -48,6 +48,8 @@ skills/review/scripts/collect-context.ps1
 skills/review/scripts/collect-context.sh
 skills/skill-edit/scripts/check.ps1
 skills/skill-edit/scripts/check.sh
+skills/setup/scripts/collect-project-context.ps1
+skills/setup/scripts/collect-project-context.sh
 validation/pressure-scenarios.json
 '
 
@@ -149,6 +151,7 @@ skills/deepen/SKILL.md|skills/deepen/scripts/collect-architecture-context.ps1|de
 skills/skill-edit/SKILL.md|压力场景|skill-edit requires pressure scenarios
 skills/setup/SKILL.md|issue tracker|setup captures issue tracker conventions
 skills/setup/SKILL.md|验证命令|setup captures validation commands
+skills/setup/SKILL.md|skills/setup/scripts/collect-project-context.ps1|setup exposes context collection helper script
 skills/brainstorm/SKILL.md|候选方案|brainstorm generates candidate approaches
 skills/brainstorm/SKILL.md|转入 `clarify`|brainstorm escalates to clarify after two rounds
 skills/brainstorm/SKILL.md|不要超过两轮发散|brainstorm limits to two rounds of divergence

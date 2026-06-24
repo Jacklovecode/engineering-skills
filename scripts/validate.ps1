@@ -55,6 +55,8 @@ $requiredFiles = @(
   "skills/review/scripts/collect-context.sh",
   "skills/skill-edit/scripts/check.ps1",
   "skills/skill-edit/scripts/check.sh",
+  "skills/setup/scripts/collect-project-context.ps1",
+  "skills/setup/scripts/collect-project-context.sh",
   "validation/pressure-scenarios.json"
 )
 
@@ -159,6 +161,7 @@ $scenarioChecks = @(
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = '压力场景'; Label = 'skill-edit requires pressure scenarios' },
   @{ File = 'skills/setup/SKILL.md'; Pattern = 'issue tracker'; Label = 'setup captures issue tracker conventions' },
   @{ File = 'skills/setup/SKILL.md'; Pattern = '验证命令'; Label = 'setup captures validation commands' },
+  @{ File = 'skills/setup/SKILL.md'; Pattern = 'skills/setup/scripts/collect-project-context.ps1'; Label = 'setup exposes context collection helper script' },
   @{ File = 'skills/skill-edit/SKILL.md'; Pattern = 'description` 只写触发条件'; Label = 'skill-edit enforces description trigger rule' }
 )
 

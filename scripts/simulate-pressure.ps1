@@ -81,6 +81,30 @@ foreach ($scenario in $scenarioData.scenarios) {
     }
   }
 
+  foreach ($expected in $scenario.expected_response_contains) {
+    $text = [string]$expected
+    if ([string]::IsNullOrWhiteSpace($text)) {
+      $scenarioPass = $false
+      $message = "Expected response contains entry must not be empty"
+      $errors.Add("$($scenario.id): $message") | Out-Null
+      $report.Add("- FAIL: $message") | Out-Null
+    } else {
+      $report.Add("- PASS: expected response phrase documented: $text") | Out-Null
+    }
+  }
+
+  foreach ($forbiddenResponse in $scenario.forbidden_response_contains) {
+    $text = [string]$forbiddenResponse
+    if ([string]::IsNullOrWhiteSpace($text)) {
+      $scenarioPass = $false
+      $message = "Forbidden response contains entry must not be empty"
+      $errors.Add("$($scenario.id): $message") | Out-Null
+      $report.Add("- FAIL: $message") | Out-Null
+    } else {
+      $report.Add("- PASS: forbidden response phrase documented: $text") | Out-Null
+    }
+  }
+
   $report.Add("") | Out-Null
   if ($scenarioPass) {
     $report.Add("Result: PASS") | Out-Null

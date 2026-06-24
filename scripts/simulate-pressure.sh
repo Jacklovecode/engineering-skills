@@ -83,6 +83,24 @@ for scenario in data["scenarios"]:
         else:
             report.append(f"- PASS: forbidden behavior documented: {forbidden}")
 
+    for expected in scenario.get("expected_response_contains", []):
+        if not str(expected).strip():
+            passed = False
+            msg = "Expected response contains entry must not be empty"
+            errors.append(f"{scenario['id']}: {msg}")
+            report.append(f"- FAIL: {msg}")
+        else:
+            report.append(f"- PASS: expected response phrase documented: {expected}")
+
+    for forbidden_response in scenario.get("forbidden_response_contains", []):
+        if not str(forbidden_response).strip():
+            passed = False
+            msg = "Forbidden response contains entry must not be empty"
+            errors.append(f"{scenario['id']}: {msg}")
+            report.append(f"- FAIL: {msg}")
+        else:
+            report.append(f"- PASS: forbidden response phrase documented: {forbidden_response}")
+
     report.append("")
     report.append("Result: PASS" if passed else "Result: FAIL")
     report.append("")

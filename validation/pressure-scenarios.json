@@ -837,6 +837,15 @@
         "不说明对比点",
         "不说明范围假设",
         "直接声称当前改动全部没问题"
+      ],
+      "expected_response_contains": [
+        "审查范围",
+        "范围可信度",
+        "固定对比点"
+      ],
+      "forbidden_response_contains": [
+        "全部没问题",
+        "无需说明范围"
       ]
     },
     {
@@ -869,6 +878,15 @@
         "只追问实现细节",
         "不判断领域文档影响",
         "为一次性实现细节建议写 ADR"
+      ],
+      "expected_response_contains": [
+        "领域文档影响",
+        "建议更新 `CONTEXT.md`",
+        "需要用户确认记录位置"
+      ],
+      "forbidden_response_contains": [
+        "我直接创建 ADR",
+        "不需要确认文档位置"
       ]
     },
     {
@@ -901,6 +919,15 @@
         "只给架构候选",
         "不说明领域文档影响",
         "没有项目约定时直接创建文档"
+      ],
+      "expected_response_contains": [
+        "领域文档影响",
+        "CONTEXT-MAP.md",
+        "下一步"
+      ],
+      "forbidden_response_contains": [
+        "已直接创建文档",
+        "无需确认项目约定"
       ]
     },
     {
@@ -937,6 +964,15 @@
         "直接开始实现功能",
         "把 setup 当成 zoom-out",
         "不记录验证命令"
+      ],
+      "expected_response_contains": [
+        "已发现的项目约定",
+        "需要用户确认的约定",
+        "验证命令"
+      ],
+      "forbidden_response_contains": [
+        "直接开始实现",
+        "不需要 setup"
       ]
     }
   ]
